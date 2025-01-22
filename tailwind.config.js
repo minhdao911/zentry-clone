@@ -6,6 +6,10 @@ export default {
   content: ["index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      fontSize: {
+        "2xs": [".65rem", { lineHeight: "1rem" }],
+        "3xs": [".55rem", { lineHeight: ".75rem" }],
+      },
       fontFamily: {
         zentry: ["zentry", "sans-serif"],
         general: ["general", "sans-serif"],
