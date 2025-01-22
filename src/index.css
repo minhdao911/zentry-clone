@@ -62,6 +62,12 @@ body {
     font-feature-settings: "ss01" on;
   }
 
+  .text-body {
+    font-family: "roobert-regular";
+    font-feature-settings: "ss02" on;
+    line-height: 1.2;
+  }
+
   .hero-heading {
     @apply uppercase font-zentry font-black text-5xl sm:right-10 sm:text-7xl md:text-9xl lg:text-[12rem];
   }
