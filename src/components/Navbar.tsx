@@ -4,10 +4,10 @@ import ArrowDownNarrow from "../assets/arrow-down-narrow.svg?react";
 import ArrowUpRight from "../assets/arrow-up-right.svg?react";
 import Button from "./ui/Button";
 import Icon from "./ui/Icon";
-import clsx from "clsx";
 import { useWindowScroll } from "react-use";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
+import { cn } from "../utils/cn";
 
 interface NavbarProps {}
 
@@ -122,7 +122,7 @@ const Navbar: FunctionComponent<NavbarProps> = () => {
               {[1, 2, 3, 4].map((bar) => (
                 <div
                   key={bar}
-                  className={clsx(
+                  className={cn(
                     "indicator-line",
                     isIndicatorActive && "active"
                   )}

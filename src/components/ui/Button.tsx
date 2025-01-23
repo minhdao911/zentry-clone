@@ -1,7 +1,7 @@
 import { FunctionComponent, SVGAttributes } from "react";
 import { IconType } from "react-icons";
 import Icon from "./Icon";
-import clsx from "clsx";
+import { cn } from "../../utils/cn";
 
 interface ButtonProps {
   id?: string;
@@ -40,7 +40,7 @@ const Button: FunctionComponent<ButtonProps> = ({
   return (
     <button
       id={id}
-      className={clsx(
+      className={cn(
         `group relative z-10 w-fit flex-center cursor-pointer overflow-hidden rounded-full bg-violet-50 text-black`,
         styles.container[size],
         className
@@ -49,11 +49,11 @@ const Button: FunctionComponent<ButtonProps> = ({
       {leftIcon && (
         <Icon
           icon={leftIcon}
-          className={clsx(styles.icon[size], iconClassName)}
+          className={cn(styles.icon[size], iconClassName)}
         />
       )}
       <span
-        className={clsx(
+        className={cn(
           "relative inline-flex overflow-hidden font-general font-bold uppercase",
           styles.text[size]
         )}
@@ -68,7 +68,7 @@ const Button: FunctionComponent<ButtonProps> = ({
       {rightIcon && (
         <Icon
           icon={rightIcon}
-          className={clsx(styles.icon[size], iconClassName)}
+          className={cn(styles.icon[size], iconClassName)}
         />
       )}
     </button>

@@ -81,12 +81,16 @@ body {
   }
 
   .animated-title {
-    @apply flex flex-col gap-1 text-7xl uppercase leading-[.8] text-white sm:px-32 md:text-[6rem];
+    @apply flex flex-col gap-1 text-7xl uppercase leading-[.8] sm:px-32 md:text-[6rem];
+  }
+
+  .animated-subtitle {
+    @apply font-general text-sm text-center uppercase md:text-[10px] mb-8;
   }
 
   .animated-word {
     @apply special-font font-zentry font-black opacity-0;
-    transform: translate3d(10px, 51px, -60px) rotateY(60deg) rotateX(-40deg);
+    transform: translate3d(-300px, 0, -60px) rotateY(50deg) rotateX(-20deg);
     transform-origin: 50% 50% -150px !important;
     will-change: opacity, transform;
   }

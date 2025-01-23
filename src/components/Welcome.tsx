@@ -2,6 +2,7 @@ import { useGSAP } from "@gsap/react";
 import { FunctionComponent } from "react";
 import { ScrollTrigger } from "gsap/all";
 import gsap from "gsap";
+import AnimatedTitle from "./ui/AnimatedTitle";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -26,14 +27,11 @@ const Welcome: FunctionComponent<WelcomeProps> = () => {
 
   return (
     <div className="min-h-screen w-screen">
-      <div className="relative mt-36 flex flex-col items-center gap-5">
-        <h2 className="font-general text-sm uppercase md:text-[10px]">
-          Welcome to Zentry
-        </h2>
-
-        <div className="max-w-[800px] text-center text-4xl hero-heading special-font uppercase leading-[0.8] md:text-[5rem]">
-          Disc<b>o</b>ver the world's largest shared <a>a</a>dventure
-        </div>
+      <div className="relative mt-36">
+        <AnimatedTitle
+          title="Disc<b>o</b>ver the world's largest shared <a>a</a>dventure"
+          subTitle="Welcome to Zentry"
+        />
 
         <div id="clip" className="relative h-dvh w-screen">
           <div className="absolute left-0 top-36 w-full z-20 scale-150">
