@@ -1,5 +1,5 @@
 import gsap from "gsap";
-import { FunctionComponent, useEffect, useRef } from "react";
+import { forwardRef, FunctionComponent, useEffect, useRef } from "react";
 import { cn } from "../../utils/cn";
 import { TextPlugin } from "gsap/all";
 
@@ -15,11 +15,7 @@ interface AnimatedTitleProps {
   };
 }
 
-const AnimatedTitle: FunctionComponent<AnimatedTitleProps> = ({
-  title,
-  subTitle,
-  styles,
-}) => {
+const AnimatedTitle: FunctionComponent<AnimatedTitleProps> = (props) => {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -33,11 +29,11 @@ const AnimatedTitle: FunctionComponent<AnimatedTitleProps> = ({
         },
       });
 
-      if (subTitle) {
+      if (props.subTitle) {
         titleAnimation.to(".animated-subtitle", {
           duration: 0.8,
           text: {
-            value: subTitle,
+            value: props.subTitle,
             delimiter: " ",
           },
         });
@@ -54,30 +50,41 @@ const AnimatedTitle: FunctionComponent<AnimatedTitleProps> = ({
     return () => ctx.revert();
   }, []);
 
-  return (
-    <div
-      ref={containerRef}
-      className={cn("flex flex-col justify-center gap-8", styles?.container)}
-    >
-      {subTitle && <h2 className={cn("animated-subtitle", styles?.subtitle)} />}
-      <div className={cn("animated-title", styles?.title)}>
-        {title.split("<br />").map((line, index) => (
-          <div
-            key={index}
-            className="flex-center max-w-full flex-wrap gap-2 px-10 md:gap-3"
-          >
-            {line.split(" ").map((word, i) => (
-              <span
-                key={i}
-                className="animated-word"
-                dangerouslySetInnerHTML={{ __html: word }}
-              />
-            ))}
-          </div>
-        ))}
-      </div>
-    </div>
-  );
+  return <Title ref={containerRef} {...props} />;
 };
 
 export default AnimatedTitle;
+
+export const Title = forwardRef(
+  (
+    { title, subTitle, styles }: AnimatedTitleProps,
+    ref: React.ForwardedRef<HTMLDivElement>
+  ) => {
+    return (
+      <div
+        ref={ref}
+        className={cn("flex flex-col justify-center gap-8", styles?.container)}
+      >
+        {subTitle && (
+          <h2 className={cn("animated-subtitle", styles?.subtitle)} />
+        )}
+        <div className={cn("animated-title", styles?.title)}>
+          {title.split("<br />").map((line, index) => (
+            <div
+              key={index}
+              className="flex-center max-w-full flex-wrap gap-2 px-10 md:gap-3"
+            >
+              {line.split(" ").map((word, i) => (
+                <span
+                  key={i}
+                  className="animated-word"
+                  dangerouslySetInnerHTML={{ __html: word }}
+                />
+              ))}
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  }
+);
