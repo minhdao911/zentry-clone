@@ -73,11 +73,11 @@ body {
   }
 
   .about-subtext {
-    @apply absolute bottom-[-80dvh] left-1/2 w-full max-w-96 -translate-x-1/2 text-center font-circular-web text-lg md:max-w-[34rem];
+    @apply absolute bottom-[100px] left-1/2 w-full max-w-96 -translate-x-1/2 text-center font-roobert-regular tracking-tight leading-5 md:max-w-[30rem];
   }
 
   .about-image {
-    @apply absolute left-1/2 top-0 z-20 h-[60vh] w-96 origin-center -translate-x-1/2 overflow-hidden rounded-3xl md:w-[30vw];
+    @apply absolute left-1/2 top-0 z-20 h-[65vh] w-96 origin-center -translate-x-1/2 overflow-hidden rounded-3xl md:w-[35vw];
   }
 
   .animated-title {
