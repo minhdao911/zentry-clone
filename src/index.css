@@ -73,7 +73,7 @@ body {
   }
 
   .about-subtext {
-    @apply absolute bottom-[100px] left-1/2 w-full max-w-96 -translate-x-1/2 text-center font-roobert-regular tracking-tight leading-5 md:max-w-[30rem];
+    @apply absolute bottom-[50px] md:bottom-[100px] left-1/2 w-full max-w-80 -translate-x-1/2 text-center font-roobert-regular tracking-tight leading-5 md:max-w-[30rem];
   }
 
   .about-image {
@@ -96,15 +96,15 @@ body {
   }
 
   .bento-tilt_1 {
-    @apply relative border-hsla col-span-2 overflow-hidden rounded-md transition-transform duration-300 ease-out;
+    @apply relative col-span-3 overflow-hidden rounded-md transition-transform duration-300 ease-out;
   }
 
   .bento-tilt_2 {
-    @apply relative col-span-1 row-span-1 overflow-hidden rounded-md transition-transform duration-300 ease-out;
+    @apply relative col-span-3 col-start-2 row-span-1 overflow-hidden rounded-md transition-transform duration-300 ease-out;
   }
 
   .bento-title {
-    @apply uppercase md:text-6xl text-4xl font-black font-zentry;
+    @apply uppercase text-4xl leading-8 md:text-[3.5rem] md:leading-[3rem] font-black font-zentry;
   }
 
   .story-img-container {

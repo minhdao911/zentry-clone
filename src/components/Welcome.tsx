@@ -14,7 +14,7 @@ const Welcome: FunctionComponent<WelcomeProps> = () => {
       scrollTrigger: {
         trigger: "#clip",
         start: "center center",
-        end: "+=1000 center",
+        end: "+=800 center",
         scrub: 0.5,
         pin: true,
         pinSpacing: true,

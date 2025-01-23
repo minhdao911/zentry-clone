@@ -7,6 +7,7 @@ interface ButtonProps {
   id?: string;
   size?: "sm" | "base";
   text: string;
+  disabled?: boolean;
   leftIcon?: IconType | FunctionComponent<SVGAttributes<SVGElement>>;
   rightIcon?: IconType | FunctionComponent<SVGAttributes<SVGElement>>;
   className?: string;
@@ -17,6 +18,7 @@ const Button: FunctionComponent<ButtonProps> = ({
   id,
   size = "base",
   text,
+  disabled,
   leftIcon,
   rightIcon,
   className,
@@ -25,7 +27,7 @@ const Button: FunctionComponent<ButtonProps> = ({
   const styles = {
     container: {
       base: "px-5 py-2.5 gap-2 2xl:px-6 2xl:py-3 2xl:gap-2.5",
-      sm: "px-4 py-2 gap-[5px] 2xl:px-5 2xl:py-2.5 2xl:gap-2",
+      sm: "px-4 py-2 gap-[6px] 2xl:px-5 2xl:py-2.5 2xl:gap-2",
     },
     text: {
       base: "text-2xs 2xl:text-sm",
@@ -40,8 +42,11 @@ const Button: FunctionComponent<ButtonProps> = ({
   return (
     <button
       id={id}
+      disabled={disabled}
       className={cn(
         `group relative z-10 w-fit flex-center cursor-pointer overflow-hidden rounded-full bg-violet-50 text-black`,
+        disabled &&
+          "bg-black border border-neutral-600 text-neutral-600 cursor-default",
         styles.container[size],
         className
       )}
@@ -58,12 +63,18 @@ const Button: FunctionComponent<ButtonProps> = ({
           styles.text[size]
         )}
       >
-        <div className="translate-y-0 skew-y-0 transition duration-500 group-hover:translate-y-[-160%] group-hover:skew-y-2">
-          {text}
-        </div>
-        <div className="absolute translate-y-[160%] skew-y-2 transition duration-500 group-hover:translate-y-0 group-hover:skew-y-0">
-          {text}
-        </div>
+        {disabled ? (
+          text
+        ) : (
+          <>
+            <div className="translate-y-0 skew-y-0 transition duration-500 group-hover:translate-y-[-160%] group-hover:skew-y-2">
+              {text}
+            </div>
+            <div className="absolute translate-y-[160%] skew-y-2 transition duration-500 group-hover:translate-y-0 group-hover:skew-y-0">
+              {text}
+            </div>
+          </>
+        )}
       </span>
       {rightIcon && (
         <Icon
