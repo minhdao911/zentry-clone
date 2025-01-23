@@ -129,12 +129,7 @@ export const BentoTilt: FunctionComponent<BentoTiltProps> = ({
   };
 
   return (
-    <div
-      className={cn("bento-tilt", className)}
-      //   style={{
-      //     transform: "perspective(700px) translate(0px, 100px) rotates(-40deg)",
-      //   }}
-    >
+    <div className={cn("bento-tilt", className)}>
       <div
         ref={itemRef}
         className={"size-full"}

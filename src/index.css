@@ -81,11 +81,11 @@ body {
   }
 
   .animated-title {
-    @apply flex flex-col gap-1 text-7xl uppercase leading-[.8] sm:px-32 md:text-[6rem];
+    @apply flex flex-col gap-1 text-7xl uppercase leading-[.8] md:px-28 md:text-[6rem];
   }
 
   .animated-subtitle {
-    @apply font-general text-sm text-center uppercase md:text-[10px] mb-8;
+    @apply font-general text-sm text-center uppercase md:text-[10px];
   }
 
   .animated-word {
@@ -108,18 +108,17 @@ body {
   }
 
   .story-img-container {
-    @apply relative md:h-dvh h-[90vh] w-full;
+    @apply relative h-[50dvh] w-full;
     filter: url("#flt_tag");
   }
 
   .story-img-mask {
-    @apply absolute left-0 top-0 size-full overflow-hidden md:left-[20%] md:top-[-10%] md:size-4/5;
-    clip-path: polygon(4% 0, 83% 21%, 100% 73%, 0% 100%);
+    @apply absolute left-0 top-10 size-full overflow-hidden lg:top-[-6%];
+    clip-path: polygon(20% 0, 77% 7%, 90% 65%, 23% 100%);
   }
 
   .story-img-content {
-    @apply absolute w-full md:h-dvh h-[50dvh] opacity-100 left-10 top-16 md:left-0 md:top-10 lg:left-[-300px] lg:top-[-100px];
-    transform: translate3d(0, 0, 0) rotateX(0) rotateY(0) rotateZ(0) scale(1);
+    @apply absolute size-full opacity-100;
   }
 
   .gallery-img-container {

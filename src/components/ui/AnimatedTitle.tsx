@@ -8,13 +8,17 @@ gsap.registerPlugin(TextPlugin);
 interface AnimatedTitleProps {
   title: string;
   subTitle?: string;
-  className?: string;
+  styles?: {
+    container?: string;
+    title?: string;
+    subtitle?: string;
+  };
 }
 
 const AnimatedTitle: FunctionComponent<AnimatedTitleProps> = ({
   title,
   subTitle,
-  className,
+  styles,
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -51,9 +55,12 @@ const AnimatedTitle: FunctionComponent<AnimatedTitleProps> = ({
   }, []);
 
   return (
-    <div ref={containerRef}>
-      {subTitle && <h2 className="animated-subtitle" />}
-      <div className={cn("animated-title", className)}>
+    <div
+      ref={containerRef}
+      className={cn("flex flex-col justify-center gap-8", styles?.container)}
+    >
+      {subTitle && <h2 className={cn("animated-subtitle", styles?.subtitle)} />}
+      <div className={cn("animated-title", styles?.title)}>
         {title.split("<br />").map((line, index) => (
           <div
             key={index}
