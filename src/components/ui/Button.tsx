@@ -3,33 +3,141 @@ import { IconType } from "react-icons";
 import Icon from "./Icon";
 import { cn } from "../../utils/cn";
 
+type ButtonSize = "sm" | "base";
+
+type ButtonVariant = "primary" | "link";
+
+type ButtonStyles = {
+  container?: string;
+  innerContainer?: string;
+  icon?: string;
+  text?: string;
+};
+
 interface ButtonProps {
   id?: string;
-  size?: "sm" | "base";
+  size?: ButtonSize;
+  variant?: ButtonVariant;
   text: string;
   disabled?: boolean;
   leftIcon?: IconType | FunctionComponent<SVGAttributes<SVGElement>>;
   rightIcon?: IconType | FunctionComponent<SVGAttributes<SVGElement>>;
-  styles?: {
-    container?: string;
-    icon?: string;
-    text?: string;
-  };
+  styles?: ButtonStyles;
 }
 
 const Button: FunctionComponent<ButtonProps> = ({
   id,
   size = "base",
+  variant = "primary",
   text,
   disabled,
   leftIcon,
   rightIcon,
   styles,
 }) => {
+  const containerStyles = {
+    base: "px-5 py-2.5 2xl:px-6 2xl:py-3",
+    sm: "px-4 py-2 2xl:px-5 2xl:py-2.5",
+  };
+
+  const variantStyles = {
+    primary: {
+      container: "bg-violet-50 text-black",
+    },
+    link: {
+      container:
+        "bg-transparent py-0.5 px-3 text-black enabled:hover:bg-black enabled:hover:text-white disabled:border-none",
+    },
+  };
+
+  const getButtonContent = () => {
+    if (disabled) {
+      return (
+        <ButtonContent
+          text={text}
+          size={size}
+          leftIcon={leftIcon}
+          rightIcon={rightIcon}
+          styles={styles}
+        />
+      );
+    }
+
+    if (variant === "link") {
+      return (
+        <ButtonContent
+          text={text}
+          size={size}
+          leftIcon={leftIcon}
+          rightIcon={rightIcon}
+          styles={styles}
+        />
+      );
+    }
+
+    return (
+      <>
+        <div className="translate-y-0 skew-y-0 transition duration-300 group-hover:translate-y-[-200%] group-hover:skew-y-6">
+          <ButtonContent
+            text={text}
+            size={size}
+            leftIcon={leftIcon}
+            rightIcon={rightIcon}
+            styles={styles}
+          />
+        </div>
+        <div className="absolute translate-y-[200%] skew-y-6 transition duration-300 group-hover:translate-y-0 group-hover:skew-y-0">
+          <ButtonContent
+            text={text}
+            size={size}
+            leftIcon={leftIcon}
+            rightIcon={rightIcon}
+            styles={styles}
+          />
+        </div>
+      </>
+    );
+  };
+
+  return (
+    <button
+      id={id}
+      disabled={disabled}
+      className={cn(
+        "group relative z-10 w-fit flex-center cursor-pointer overflow-hidden rounded-full bg-violet-50 transition scale-100",
+        "disabled:bg-transparent disabled:border disabled:border-neutral-600 disabled:text-neutral-600 disabled:cursor-default",
+        "enabled:hover:scale-110 enabled:hover:rounded-lg",
+        containerStyles[size],
+        variantStyles[variant].container,
+        styles?.container
+      )}
+    >
+      {getButtonContent()}
+    </button>
+  );
+};
+
+export default Button;
+
+interface ButtonContentProps {
+  text: string;
+  size: ButtonSize;
+  leftIcon?: IconType | FunctionComponent<SVGAttributes<SVGElement>>;
+  rightIcon?: IconType | FunctionComponent<SVGAttributes<SVGElement>>;
+  styles?: ButtonStyles;
+}
+
+const ButtonContent: FunctionComponent<ButtonContentProps> = ({
+  text,
+  size,
+  leftIcon,
+  rightIcon,
+  styles,
+}) => {
   const defaultStyles = {
-    container: {
-      base: "px-5 py-2.5 gap-2 2xl:px-6 2xl:py-3 2xl:gap-2.5",
-      sm: "px-4 py-2 gap-[6px] 2xl:px-5 2xl:py-2.5 2xl:gap-2",
+    innerContainer: {
+      base: "gap-2 2xl:gap-2.5",
+      sm: "gap-[6px] 2xl:gap-2",
     },
     text: {
       base: "text-2xs 2xl:text-sm",
@@ -42,14 +150,11 @@ const Button: FunctionComponent<ButtonProps> = ({
   };
 
   return (
-    <button
-      id={id}
-      disabled={disabled}
+    <div
       className={cn(
-        "group relative z-10 w-fit flex-center cursor-pointer overflow-hidden rounded-full bg-violet-50 text-black",
-        "disabled:bg-transparent disabled:border disabled:border-neutral-600 disabled:text-neutral-600 disabled:cursor-default",
-        defaultStyles.container[size],
-        styles?.container
+        "w-full flex-center",
+        defaultStyles.innerContainer[size],
+        styles?.innerContainer
       )}
     >
       {leftIcon && (
@@ -60,23 +165,12 @@ const Button: FunctionComponent<ButtonProps> = ({
       )}
       <span
         className={cn(
-          "relative inline-flex overflow-hidden font-general font-bold uppercase",
+          "overflow-hidden font-general font-bold uppercase",
           defaultStyles.text[size],
           styles?.text
         )}
       >
-        {disabled ? (
-          text
-        ) : (
-          <>
-            <div className="translate-y-0 skew-y-0 transition duration-500 group-hover:translate-y-[-160%] group-hover:skew-y-2">
-              {text}
-            </div>
-            <div className="absolute translate-y-[160%] skew-y-2 transition duration-500 group-hover:translate-y-0 group-hover:skew-y-0">
-              {text}
-            </div>
-          </>
-        )}
+        {text}
       </span>
       {rightIcon && (
         <Icon
@@ -84,8 +178,6 @@ const Button: FunctionComponent<ButtonProps> = ({
           className={cn(defaultStyles.icon[size], styles?.icon)}
         />
       )}
-    </button>
+    </div>
   );
 };
-
-export default Button;

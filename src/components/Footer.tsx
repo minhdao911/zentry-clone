@@ -38,10 +38,10 @@ const Footer: FunctionComponent<FooterProps> = () => {
           </div>
           {Object.keys(footerLinks).map((key, index) => (
             <div key={index} className="col-span-1 row-span-1">
-              <h3 className="font-general text-xs md:text-2xs uppercase mb-5">
+              <h3 className="font-general text-xs md:text-2xs uppercase mb-4 translate-x-3">
                 {key}
               </h3>
-              <ul className="space-y-1 font-roobert-regular text-lg">
+              <ul className="font-roobert-regular text-lg">
                 {footerLinks[key].map(
                   ({ title, icon, disabled }, linkIndex) => (
                     <li key={linkIndex}>
@@ -49,11 +49,12 @@ const Footer: FunctionComponent<FooterProps> = () => {
                         text={title}
                         rightIcon={icon}
                         disabled={disabled}
+                        variant="link"
                         styles={{
-                          container:
-                            "bg-transparent p-0 rounded-none gap-0.5 disabled:text-zentry-violet-800 disabled:border-none",
-                          text: "font-roobert-regular text-lg normal-case",
-                          icon: "w-4 h-4",
+                          container: "disabled:text-zentry-violet-800",
+                          innerContainer: "!gap-0.5",
+                          text: "font-roobert-regular text-lg 2xl:text-xl normal-case",
+                          icon: "w-4 2xl:w-5",
                         }}
                       />
                     </li>
