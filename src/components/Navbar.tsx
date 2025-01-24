@@ -1,35 +1,22 @@
-import { FunctionComponent, useEffect, useRef, useState } from "react";
+import {
+  FunctionComponent,
+  SVGAttributes,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import Logo from "../assets/logo.svg?react";
 import ArrowDownNarrow from "../assets/arrow-down-narrow.svg?react";
-import ArrowUpRight from "../assets/arrow-up-right.svg?react";
 import Button from "./ui/Button";
 import Icon from "./ui/Icon";
-import { useWindowScroll } from "react-use";
+import { useWindowScroll, useWindowSize } from "react-use";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { cn } from "../utils/cn";
+import { navItems } from "../constants";
+import { IconType } from "react-icons";
 
 interface NavbarProps {}
-
-const navItems = [
-  {
-    text: "Nexus",
-    icon: ArrowUpRight,
-  },
-  {
-    text: "Vault",
-    icon: ArrowUpRight,
-  },
-  {
-    text: "Prologue",
-  },
-  {
-    text: "About",
-  },
-  {
-    text: "Contact",
-  },
-];
 
 const Navbar: FunctionComponent<NavbarProps> = () => {
   const [isAudioPlaying, setIsAudioPlaying] = useState(false);
@@ -41,6 +28,7 @@ const Navbar: FunctionComponent<NavbarProps> = () => {
   const audioRef = useRef<HTMLAudioElement>(null);
 
   const { y: currentScrollY } = useWindowScroll();
+  const { width: windowWidth } = useWindowSize();
 
   useEffect(() => {
     if (currentScrollY === 0) {
@@ -97,22 +85,26 @@ const Navbar: FunctionComponent<NavbarProps> = () => {
               <Button size="sm" text="Whitepaper" />
             </div>
           </div>
-          <div className="flex items-center">
-            {navItems.map(({ text, icon }, index) => (
-              <a
+          <div
+            className="flex items-center gap-10 cursor-pointer"
+            onMouseLeave={() => {
+              gsap.set(".nav-item-bg", {
+                clearProps: "all",
+              });
+            }}
+          >
+            <div className="nav-item-bg absolute rounded-full bg-zentry-blue-75" />
+
+            {navItems.map((item, index) => (
+              <NavItem
                 key={index}
-                href="#"
-                className="flex items-center gap-[2.5px] nav-hover-btn"
-              >
-                <span className="text-2xs">{text}</span>
-                {icon && (
-                  <Icon icon={icon} className="w-2 text-zentry-blue-75" />
-                )}
-              </a>
+                {...item}
+                isMobileScreen={windowWidth < 640}
+              />
             ))}
 
             <button
-              className="flex items-center space-x-[.165rem] h-4 ml-10"
+              className="flex items-center space-x-[.165rem] h-4"
               onClick={toggleAudio}
             >
               <audio
@@ -142,3 +134,63 @@ const Navbar: FunctionComponent<NavbarProps> = () => {
 };
 
 export default Navbar;
+
+interface NavItemProps {
+  text: string;
+  icon?: IconType | FunctionComponent<SVGAttributes<SVGElement>>;
+  mobile: boolean;
+  isMobileScreen?: boolean;
+}
+
+function NavItem({ text, icon, mobile, isMobileScreen }: NavItemProps) {
+  const bgRef = useRef<HTMLDivElement>(null);
+
+  const handleMouseEnter = () => {
+    if (!bgRef.current) return;
+
+    const navBg = document.querySelector(".nav-item-bg") as HTMLElement;
+    if (!navBg) return;
+
+    const { left, top, width, height } = bgRef.current.getBoundingClientRect();
+    const currentLeft = parseFloat(navBg.style.left);
+
+    if (isNaN(currentLeft)) {
+      // Initial state - set position immediately
+      gsap.set(".nav-item-bg", {
+        left: left - (isMobileScreen ? 0 : 24),
+        top: top - 14,
+        width: width,
+        height: height,
+        opacity: 1,
+      });
+    } else {
+      // Animate to new position
+      gsap.to(".nav-item-bg", {
+        left: left - 24,
+        top: top - 14,
+        width: width,
+        height: height,
+        duration: 0.3,
+        ease: "power1.inOut",
+      });
+    }
+  };
+
+  return (
+    <li
+      className={cn(
+        "relative group flex items-center gap-[2.5px] font-general font-semibold text-xs uppercase transition duration-300 text-zentry-blue-50 hover:text-black",
+        {
+          "hidden md:flex": !mobile,
+        }
+      )}
+      onMouseEnter={handleMouseEnter}
+    >
+      <a href="#">
+        <span className="text-2xs">{text}</span>
+      </a>
+      {icon && <Icon icon={icon} className="w-2" />}
+      <div ref={bgRef} className="absolute -inset-y-1.5 -inset-x-3" />
+    </li>
+  );
+}

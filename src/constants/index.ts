@@ -1,6 +1,32 @@
 import { FunctionComponent, SVGAttributes } from "react";
 import { IconType } from "react-icons";
 import { MdArrowOutward } from "react-icons/md";
+import ArrowUpRight from "../assets/arrow-up-right.svg?react";
+
+export const navItems = [
+  {
+    text: "Nexus",
+    icon: ArrowUpRight,
+    mobile: true,
+  },
+  {
+    text: "Vault",
+    icon: ArrowUpRight,
+    mobile: false,
+  },
+  {
+    text: "Prologue",
+    mobile: false,
+  },
+  {
+    text: "About",
+    mobile: false,
+  },
+  {
+    text: "Contact",
+    mobile: false,
+  },
+];
 
 type FooterLink = {
   title: string;
