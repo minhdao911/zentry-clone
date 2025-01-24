@@ -38,7 +38,7 @@ body {
   }
 
   .nav-hover-btn {
-    @apply relative ms-10 font-general text-xs uppercase text-blue-50 after:absolute after:-bottom-0.5 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-blue-75 after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] hover:after:origin-bottom-left hover:after:scale-x-100 cursor-pointer;
+    @apply relative ms-10 font-general text-xs uppercase text-zentry-blue-50 after:absolute after:-bottom-0.5 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-zentry-blue-75 after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] hover:after:origin-bottom-left hover:after:scale-x-100 cursor-pointer;
   }
 
   .floating-nav {
@@ -122,7 +122,7 @@ body {
   }
 
   .gallery-img-container {
-    @apply size-64 overflow-hidden bg-violet-300;
+    @apply size-64 overflow-hidden bg-zentry-violet-500;
   }
 
   .gallery-img {
@@ -148,6 +148,12 @@ body {
   .contact-clip-path-2 {
     clip-path: polygon(38% 10%, 78% 30%, 50% 100%, 12% 58%);
   }
+}
+
+.zentry-text {
+  transition: transform 0.1s;
+  transform-style: preserve-3d;
+  perspective: 1000px;
 }
 
 .indicator-line {

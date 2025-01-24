@@ -91,7 +91,7 @@ const Navbar: FunctionComponent<NavbarProps> = () => {
       <header className="absolute top-1/2 w-full -translate-y-1/2">
         <nav className="flex size-full items-center justify-between p-4">
           <div className="flex items-center gap-7">
-            <Logo className="w-8 text-blue-75 2xl:w-10" />
+            <Logo className="w-8 text-zentry-blue-75 2xl:w-10" />
             <div className="flex items-center gap-3">
               <Button size="sm" text="Products" rightIcon={ArrowDownNarrow} />
               <Button size="sm" text="Whitepaper" />
@@ -105,7 +105,9 @@ const Navbar: FunctionComponent<NavbarProps> = () => {
                 className="flex items-center gap-[2.5px] nav-hover-btn"
               >
                 <span className="text-2xs">{text}</span>
-                {icon && <Icon icon={icon} className="w-2 text-blue-75" />}
+                {icon && (
+                  <Icon icon={icon} className="w-2 text-zentry-blue-75" />
+                )}
               </a>
             ))}
 

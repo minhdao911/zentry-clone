@@ -110,7 +110,7 @@ const Hero: FunctionComponent<HeroProps> = () => {
   return (
     <div className="relative h-dvh w-screen overflow-x-hidden">
       {isLoading && (
-        <div className="flex-center absolute z-[100] h-dvh w-screen overflow-hidden bg-blue-75">
+        <div className="flex-center absolute z-[100] h-dvh w-screen overflow-hidden bg-zentry-blue-75">
           <div className="three-body">
             <div className="three-body__dot" />
             <div className="three-body__dot" />
@@ -164,17 +164,17 @@ const Hero: FunctionComponent<HeroProps> = () => {
           />
         </div>
 
-        <h1 className="special-font hero-heading absolute bottom-5 right-5 z-40 text-blue-75">
+        <h1 className="special-font hero-heading absolute bottom-5 right-5 z-40 text-zentry-blue-75">
           G<b>a</b>ming
         </h1>
 
         <div className="absolute left-0 top-0 z-40 size-full">
           <div className="mt-24 px-5 sm:px-10">
-            <h1 className="special-font hero-heading text-blue-75">
+            <h1 className="special-font hero-heading text-zentry-blue-75">
               redefi<b>n</b>e
             </h1>
 
-            <p className="mb-5 max-w-64 text-body text-blue-75">
+            <p className="mb-5 max-w-64 text-body text-zentry-blue-75">
               Enter the Metagame <br /> Unleash the Play Economy
             </p>
 
@@ -182,7 +182,9 @@ const Hero: FunctionComponent<HeroProps> = () => {
               id="watch-trailer"
               text="Watch Trailer"
               leftIcon={ArrowRight}
-              className="bg-yellow-300"
+              styles={{
+                container: "bg-zentry-yellow-300",
+              }}
             />
           </div>
         </div>

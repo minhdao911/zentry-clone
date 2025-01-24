@@ -10,8 +10,11 @@ interface ButtonProps {
   disabled?: boolean;
   leftIcon?: IconType | FunctionComponent<SVGAttributes<SVGElement>>;
   rightIcon?: IconType | FunctionComponent<SVGAttributes<SVGElement>>;
-  className?: string;
-  iconClassName?: string;
+  styles?: {
+    container?: string;
+    icon?: string;
+    text?: string;
+  };
 }
 
 const Button: FunctionComponent<ButtonProps> = ({
@@ -21,10 +24,9 @@ const Button: FunctionComponent<ButtonProps> = ({
   disabled,
   leftIcon,
   rightIcon,
-  className,
-  iconClassName,
+  styles,
 }) => {
-  const styles = {
+  const defaultStyles = {
     container: {
       base: "px-5 py-2.5 gap-2 2xl:px-6 2xl:py-3 2xl:gap-2.5",
       sm: "px-4 py-2 gap-[6px] 2xl:px-5 2xl:py-2.5 2xl:gap-2",
@@ -44,23 +46,23 @@ const Button: FunctionComponent<ButtonProps> = ({
       id={id}
       disabled={disabled}
       className={cn(
-        `group relative z-10 w-fit flex-center cursor-pointer overflow-hidden rounded-full bg-violet-50 text-black`,
-        disabled &&
-          "bg-black border border-neutral-600 text-neutral-600 cursor-default",
-        styles.container[size],
-        className
+        "group relative z-10 w-fit flex-center cursor-pointer overflow-hidden rounded-full bg-violet-50 text-black",
+        "disabled:bg-transparent disabled:border disabled:border-neutral-600 disabled:text-neutral-600 disabled:cursor-default",
+        defaultStyles.container[size],
+        styles?.container
       )}
     >
       {leftIcon && (
         <Icon
           icon={leftIcon}
-          className={cn(styles.icon[size], iconClassName)}
+          className={cn(defaultStyles.icon[size], styles?.icon)}
         />
       )}
       <span
         className={cn(
           "relative inline-flex overflow-hidden font-general font-bold uppercase",
-          styles.text[size]
+          defaultStyles.text[size],
+          styles?.text
         )}
       >
         {disabled ? (
@@ -79,7 +81,7 @@ const Button: FunctionComponent<ButtonProps> = ({
       {rightIcon && (
         <Icon
           icon={rightIcon}
-          className={cn(styles.icon[size], iconClassName)}
+          className={cn(defaultStyles.icon[size], styles?.icon)}
         />
       )}
     </button>

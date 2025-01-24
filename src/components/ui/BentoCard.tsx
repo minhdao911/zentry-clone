@@ -62,7 +62,7 @@ const BentoCard: FunctionComponent<BentoCardProps> = ({
       )}
       <div
         className={cn(
-          "relative z-10 flex flex-col justify-between p-3 size-full text-blue-75 lg:p-5",
+          "relative z-10 flex flex-col justify-between p-3 size-full text-zentry-blue-75 lg:p-5",
           styles?.text
         )}
       >

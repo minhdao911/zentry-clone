@@ -17,11 +17,12 @@ const Story: FunctionComponent<StoryProps> = () => {
     gsap.fromTo(
       ".story-img-content",
       {
-        transform: "translate(0, 100px) rotateX(-40deg);",
+        transform:
+          "perspective(700px) translate3d(0, 100px, 0) rotateX(-40deg);",
         opacity: 0,
       },
       {
-        transform: "translate(0, 0) rotateX(0)",
+        transform: "perspective(700px) translate3d(0, 0, 0) rotateX(0)",
         opacity: 1,
         ease: "power2.inOut",
         scrollTrigger: {
@@ -77,7 +78,7 @@ const Story: FunctionComponent<StoryProps> = () => {
           title="The st<b>o</b>ry of<br />a hidden real<b>m</b>"
           subTitle="The open IP universe"
           styles={{
-            container: "text-blue-75 relative mix-blend-difference z-10",
+            container: "text-zentry-blue-75 relative mix-blend-difference z-10",
           }}
         />
 
@@ -99,7 +100,7 @@ const Story: FunctionComponent<StoryProps> = () => {
 
         <div className="mt-[-150px] md:mt-[-100px] w-full flex justify-center lg:justify-end">
           <div className="flex h-full w-fit flex-col items-center lg:items-start">
-            <p className="mb-5 lg:mb-3 max-w-xs text-center md:text-sm font-roobert-regular text-blue-75 lg:text-start">
+            <p className="mb-5 lg:mb-3 max-w-xs text-center md:text-sm font-roobert-regular text-zentry-blue-75 lg:text-start">
               Where realms converge, lies Zentry and the boundless pillar.
               Discover its secrets and shape your fate amidst infinite
               opportunities.

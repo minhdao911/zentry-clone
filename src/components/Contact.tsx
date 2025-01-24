@@ -38,7 +38,7 @@ const Contact: FunctionComponent<ContactProps> = () => {
           src="img/swordman.webp"
         />
       </div>
-      <div className="absolute-center w-full flex flex-col items-center text-center gap-10 text-blue-75">
+      <div className="absolute-center w-full flex flex-col items-center text-center gap-10 text-zentry-blue-75">
         <AnimatedTitle
           title="Let&#39;s b<b>u</b>ild the<br />new era of g<b>a</b>ming<br />t<b>o</b>gether."
           subTitle="Join Zentry"

@@ -19,11 +19,13 @@ const Features: FunctionComponent<FeaturesProps> = () => {
       gsap.fromTo(
         card,
         {
-          transform: "perspective(700px) translate(0px, 100px) rotateX(-40deg)",
+          transform:
+            "perspective(700px) translate3d(0px, 100px, 0) rotateX(-40deg)",
           opacity: 0,
         },
         {
-          transform: "perspective(700px) translate(0px, 0px) rotateX(0deg)",
+          transform:
+            "perspective(700px) translate3d(0px, 0px, 0) rotateX(0deg)",
           opacity: 1,
           ease: "power2.in",
           stagger: 0.2,
@@ -42,7 +44,7 @@ const Features: FunctionComponent<FeaturesProps> = () => {
     <section className="relative -top-1 bg-black pb-52">
       <div className="container mx-auto px-3 md:px-20">
         <div className="px-5 py-32 text-body">
-          <p className="text-blue-50">Explore the Zentry Universe</p>
+          <p className="text-zentry-blue-50">Explore the Zentry Universe</p>
           <p className="text-neutral-500 max-w-[400px] 2xl:max-w-[450px]">
             Immerse yourself in an IP-rich product universe where AI-driven
             gamification and hyper-personalization lead humans & AI into a
@@ -91,7 +93,10 @@ const Features: FunctionComponent<FeaturesProps> = () => {
                   text="Launch site"
                   rightIcon={ArrowUpRight}
                   size="sm"
-                  className="bg-black border border-yellow-300 text-yellow-300"
+                  styles={{
+                    container:
+                      "bg-black border border-zentry-yellow-300 text-zentry-yellow-300",
+                  }}
                 />
               }
             />
@@ -117,7 +122,7 @@ const Features: FunctionComponent<FeaturesProps> = () => {
                 </>
               }
               styles={{
-                container: "bg-violet-300 border-none",
+                container: "bg-zentry-violet-500 border-none",
                 text: "text-black",
               }}
             />
@@ -127,14 +132,7 @@ const Features: FunctionComponent<FeaturesProps> = () => {
             />
           </BentoTilt>
           <BentoTilt className="bento-tilt_2 hidden lg:block lg:col-span-2">
-            <BentoCard
-              src="videos/feature-5.mp4"
-              isAutoPlay
-              styles={{
-                container: "bg-violet-300 border-none",
-                text: "text-black",
-              }}
-            />
+            <BentoCard src="videos/feature-5.mp4" isAutoPlay />
           </BentoTilt>
         </div>
       </div>
