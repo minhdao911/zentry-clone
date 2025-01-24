@@ -71,6 +71,28 @@ const Navbar: FunctionComponent<NavbarProps> = () => {
     setIsIndicatorActive((prev) => !prev);
   };
 
+  const handleMouseLeaveRightNavbar = () => {
+    const navBg = document.querySelector(".nav-item-bg") as HTMLElement;
+
+    if (!navBg) return;
+
+    gsap.to(navBg, {
+      clearProps: "all",
+      duration: 0.1,
+      ease: "power1.inOut",
+      onComplete: () => {
+        setTimeout(() => {
+          const currentLeft = parseFloat(navBg.style.left);
+          if (!isNaN(currentLeft)) {
+            gsap.set(navBg, {
+              clearProps: "all",
+            });
+          }
+        }, 200);
+      },
+    });
+  };
+
   return (
     <div
       ref={navContainerRef}
@@ -79,29 +101,27 @@ const Navbar: FunctionComponent<NavbarProps> = () => {
       <header className="absolute top-1/2 w-full -translate-y-1/2">
         <nav className="flex size-full items-center justify-between p-4">
           <div className="flex items-center gap-7">
-            <Logo className="w-8 text-zentry-blue-75 2xl:w-10" />
+            <Logo className="w-8 text-zentry-blue-75" />
             <div className="flex items-center gap-3">
               <Button size="sm" text="Products" rightIcon={ArrowDownNarrow} />
               <Button size="sm" text="Whitepaper" />
             </div>
           </div>
-          <div
-            className="flex items-center gap-10 cursor-pointer"
-            onMouseLeave={() => {
-              gsap.set(".nav-item-bg", {
-                clearProps: "all",
-              });
-            }}
-          >
-            <div className="nav-item-bg absolute rounded-full bg-zentry-blue-75" />
+          <div className="flex items-center gap-10 cursor-pointer">
+            <div
+              className="flex items-center gap-10"
+              onMouseLeave={handleMouseLeaveRightNavbar}
+            >
+              <div className="nav-item-bg absolute rounded-full bg-zentry-blue-75" />
 
-            {navItems.map((item, index) => (
-              <NavItem
-                key={index}
-                {...item}
-                isMobileScreen={windowWidth < 640}
-              />
-            ))}
+              {navItems.map((item, index) => (
+                <NavItem
+                  key={index}
+                  {...item}
+                  isMobileScreen={windowWidth < 640}
+                />
+              ))}
+            </div>
 
             <button
               className="flex items-center space-x-[.165rem] h-4"
@@ -161,7 +181,6 @@ function NavItem({ text, icon, mobile, isMobileScreen }: NavItemProps) {
         top: top - 14,
         width: width,
         height: height,
-        opacity: 1,
       });
     } else {
       // Animate to new position
@@ -179,7 +198,7 @@ function NavItem({ text, icon, mobile, isMobileScreen }: NavItemProps) {
   return (
     <li
       className={cn(
-        "relative group flex items-center gap-[2.5px] font-general font-semibold text-xs uppercase transition duration-300 text-zentry-blue-50 hover:text-black",
+        "relative group flex items-center gap-[2.5px] font-general font-semibold text-xs uppercase text-zentry-blue-50 mix-blend-difference 2xl:gap-1.5",
         {
           "hidden md:flex": !mobile,
         }
@@ -187,9 +206,9 @@ function NavItem({ text, icon, mobile, isMobileScreen }: NavItemProps) {
       onMouseEnter={handleMouseEnter}
     >
       <a href="#">
-        <span className="text-2xs">{text}</span>
+        <span className="text-2xs 2xl:text-sm">{text}</span>
       </a>
-      {icon && <Icon icon={icon} className="w-2" />}
+      {icon && <Icon icon={icon} className="w-2 2xl:w-3" />}
       <div ref={bgRef} className="absolute -inset-y-1.5 -inset-x-3" />
     </li>
   );
