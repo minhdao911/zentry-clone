@@ -70,9 +70,7 @@ const BentoCard: FunctionComponent<BentoCardProps> = ({
           <div>
             <h1 className="bento-title special-font">{title}</h1>
             {subTitle && (
-              <p className="mt-3 max-w-52 font-roobert-regular text-2xs md:text-xs">
-                {subTitle}
-              </p>
+              <p className="mt-3 max-w-52 text-body-2">{subTitle}</p>
             )}
           </div>
         )}

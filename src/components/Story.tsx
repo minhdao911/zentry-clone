@@ -35,6 +35,38 @@ const Story: FunctionComponent<StoryProps> = () => {
     );
   });
 
+  useGSAP(() => {
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: "#story",
+        start: "bottom bottom",
+        end: "+=50",
+        scrub: 1,
+      },
+    });
+
+    tl.add([
+      gsap.to("body", {
+        backgroundColor: "#edff66",
+        duration: 0.01,
+      }),
+      gsap.to(".story-title", {
+        color: "black",
+        mixBlendMode: "normal",
+        duration: 0.01,
+      }),
+      gsap.to(".story-text", {
+        color: "black",
+        duration: 0.01,
+      }),
+      gsap.to(".story-btn", {
+        backgroundColor: "black",
+        color: "white",
+        duration: 0.01,
+      }),
+    ]);
+  });
+
   const handleMouseLeave = () => {
     if (!frameRef.current) return;
 
@@ -72,13 +104,14 @@ const Story: FunctionComponent<StoryProps> = () => {
   };
 
   return (
-    <section className="relative -top-1 h-[90dvh] w-screen bg-black pb-52">
+    <section id="story" className="relative h-dvh w-screen pt-20 pb-52">
       <div className="container mx-auto px-3 md:px-20">
         <AnimatedTitle
           title="The st<b>o</b>ry of<br />a hidden real<b>m</b>"
           subTitle="The open IP universe"
           styles={{
-            container: "text-zentry-blue-75 relative mix-blend-difference z-10",
+            container:
+              "story-title text-zentry-blue-75 relative mix-blend-difference z-10",
           }}
         />
 
@@ -100,12 +133,15 @@ const Story: FunctionComponent<StoryProps> = () => {
 
         <div className="mt-[-150px] md:mt-[-100px] w-full flex justify-center lg:justify-end">
           <div className="flex h-full w-fit flex-col items-center lg:items-start">
-            <p className="mb-5 lg:mb-3 max-w-xs text-center md:text-sm font-roobert-regular text-zentry-blue-75 lg:text-start">
+            <p className="story-text mb-5 lg:mb-3 max-w-xs text-center md:text-sm font-roobert-regular text-zentry-blue-75 lg:text-start">
               Where realms converge, lies Zentry and the boundless pillar.
               Discover its secrets and shape your fate amidst infinite
               opportunities.
             </p>
-            <Button text="Discover prologue" />
+            <Button
+              text="Discover prologue"
+              styles={{ container: "story-btn" }}
+            />
           </div>
         </div>
       </div>

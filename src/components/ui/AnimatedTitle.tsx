@@ -8,6 +8,7 @@ gsap.registerPlugin(TextPlugin);
 interface AnimatedTitleProps {
   title: string;
   subTitle?: string;
+  align?: "left" | "center" | "right";
   styles?: {
     container?: string;
     title?: string;
@@ -57,7 +58,7 @@ export default AnimatedTitle;
 
 export const Title = forwardRef(
   (
-    { title, subTitle, styles }: AnimatedTitleProps,
+    { title, subTitle, styles, align = "center" }: AnimatedTitleProps,
     ref: React.ForwardedRef<HTMLDivElement>
   ) => {
     return (
@@ -72,7 +73,11 @@ export const Title = forwardRef(
           {title.split("<br />").map((line, index) => (
             <div
               key={index}
-              className="flex-center max-w-full flex-wrap gap-2 px-10 md:gap-3"
+              className={cn("flex max-w-full flex-wrap gap-2 md:gap-3", {
+                "justify-start": align === "left",
+                "justify-center": align === "center",
+                "justify-end": align === "right",
+              })}
             >
               {line.split(" ").map((word, i) => (
                 <span

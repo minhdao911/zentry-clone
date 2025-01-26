@@ -40,8 +40,17 @@ const Features: FunctionComponent<FeaturesProps> = () => {
     });
   });
 
+  useGSAP(() => {
+    gsap.to("body", {
+      scrollTrigger: {
+        trigger: "#features",
+      },
+      backgroundColor: "black",
+    });
+  });
+
   return (
-    <section className="relative -top-1 bg-black pb-52">
+    <section id="features" className="relative bg-black pb-52">
       <div className="container mx-auto px-3 md:px-20">
         <div className="px-5 py-32 text-body">
           <p className="text-zentry-blue-50">Explore the Zentry Universe</p>

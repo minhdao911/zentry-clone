@@ -101,3 +101,21 @@ export const footerLinks: { [key: string]: FooterLink[] } = {
     },
   ],
 };
+
+export const vaultItems = [
+  {
+    title: "Shaping Zentry Collectively",
+    description:
+      "Participate in governance, influence key decisions in the ever-growing Zentry Universe that is limited only by people's imaginations",
+  },
+  {
+    title: "Unlocking Economic Opportunity",
+    description:
+      "ZENT, a commodity-based currency that unlocks exclusive benefits, airdrops, quotas, and co-creation within and beyond Zentry ecosystem.",
+  },
+  {
+    title: "Sharing Value Accrued",
+    description:
+      "ZENT holders thrive as Zentry grows, benefiting from the expansive partnerships, treasury investment and economic activities.",
+  },
+];
