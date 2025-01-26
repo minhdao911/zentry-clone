@@ -14,24 +14,6 @@ interface VaultProps {}
 const Vault: FunctionComponent<VaultProps> = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  //   useGSAP(() => {
-  //     gsap.to("body", {
-  //       scrollTrigger: {
-  //         trigger: "#vault",
-  //         start: "top bottom-=200",
-  //         end: "+=50",
-  //         scrub: 1,
-  //       },
-  //       backgroundColor: "#edff66",
-  //       duration: 0.01,
-  //       onReverseComplete: () => {
-  //         gsap.set("body", {
-  //           backgroundColor: "black",
-  //         });
-  //       },
-  //     });
-  //   });
-
   useGSAP(() => {
     gsap.set("#vault-item-1 .vault-content", {
       height: "auto",
@@ -130,7 +112,7 @@ const Vault: FunctionComponent<VaultProps> = () => {
               id={`vault-item-${index + 1}`}
               key={index}
               className={cn(
-                "flex flex-col gap-2 list-none text-black transition bg-zentry-yellow-300",
+                "flex flex-col gap-2 list-none text-black transition",
                 currentIndex !== index && "text-black/50"
               )}
             >

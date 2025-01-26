@@ -43,7 +43,7 @@ const Welcome: FunctionComponent<WelcomeProps> = () => {
             style={{ clipPath: "polygon(33% 9%, 63% 13%, 71% 71%, 31% 77%)" }}
           >
             <img
-              src="img/about.webp"
+              src="img/welcome.webp"
               alt="Background"
               className="absolute left-0 top-0 size-full object-cover"
             />
