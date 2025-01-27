@@ -1,7 +1,5 @@
 import { FunctionComponent, useRef } from "react";
 import { cn } from "../../utils/cn";
-import Button from "./Button";
-import ArrowUpRight from "../../assets/arrow-up-right.svg?react";
 import useTiltEffect from "../../hooks/use-tilt-effect";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
@@ -11,26 +9,19 @@ gsap.registerPlugin(ScrollTrigger);
 
 interface BentoCardProps {
   src?: string;
-  title?: React.ReactNode;
-  subTitle?: string;
-  isComingSoon?: boolean;
   isAutoPlay?: boolean;
   styles?: {
     container?: string;
     video?: string;
-    text?: string;
   };
-  ctaBtn?: React.ReactNode;
+  children?: React.ReactNode;
 }
 
 const BentoCard: FunctionComponent<BentoCardProps> = ({
   src,
-  title,
-  subTitle,
-  isComingSoon,
   isAutoPlay,
   styles,
-  ctaBtn,
+  children,
 }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -90,32 +81,7 @@ const BentoCard: FunctionComponent<BentoCardProps> = ({
           )}
         />
       )}
-      <div
-        className={cn(
-          "relative z-10 flex flex-col justify-between p-3 size-full text-zentry-blue-75 lg:p-5",
-          styles?.text
-        )}
-      >
-        {title && (
-          <div>
-            <h1 className="bento-title special-font">{title}</h1>
-            {subTitle && (
-              <p className="mt-3 max-w-52 text-body-2">{subTitle}</p>
-            )}
-          </div>
-        )}
-        <div className="flex items-center gap-5">
-          {isComingSoon && (
-            <Button
-              text="Coming soon"
-              disabled
-              size="sm"
-              leftIcon={ArrowUpRight}
-            />
-          )}
-          {ctaBtn}
-        </div>
-      </div>
+      {children}
     </div>
   );
 };
