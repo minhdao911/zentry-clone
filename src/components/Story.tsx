@@ -64,6 +64,10 @@ const Story: FunctionComponent<StoryProps> = () => {
         color: "white",
         duration: 0.01,
       }),
+      gsap.to(".vault-btn", {
+        opacity: 1,
+        duration: 1,
+      }),
     ]);
   });
 

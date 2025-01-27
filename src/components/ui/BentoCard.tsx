@@ -1,4 +1,4 @@
-import { FunctionComponent, useRef, useState } from "react";
+import { FunctionComponent, useRef } from "react";
 import { cn } from "../../utils/cn";
 import Button from "./Button";
 import ArrowUpRight from "../../assets/arrow-up-right.svg?react";

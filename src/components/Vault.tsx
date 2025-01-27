@@ -77,9 +77,12 @@ const Vault: FunctionComponent<VaultProps> = () => {
           <AnimatedTitle
             title="The univ<b>e</b>rse<br />powered by Ze<b>n</b>t"
             align="left"
-            styles={{ title: "!p-0" }}
           />
-          <Button text="Enter vault" variant="secondary" />
+          <Button
+            text="Enter vault"
+            variant="secondary"
+            styles={{ container: "vault-btn opacity-0" }}
+          />
         </div>
 
         <div className="absolute-center md:translate-x-0 md:translate-y-0 md:top-auto md:left-auto md:right-0 md:bottom-0 w-[350px] md:w-[470px]">

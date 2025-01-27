@@ -16,13 +16,58 @@ const About: FunctionComponent<AboutProps> = () => {
     gsap.to("body", {
       scrollTrigger: {
         trigger: "#about",
-        start: "top bottom",
+        start: "top center+=200",
         end: "+=50",
         scrub: true,
+        onLeaveBack: () => {
+          gsap.to("body", {
+            backgroundColor: "#edff66",
+            duration: 0.01,
+          });
+        },
       },
       backgroundColor: "#dfdff2",
       duration: 0.01,
     });
+  });
+
+  useGSAP(() => {
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: "#about",
+        start: "bottom center+=300",
+        end: "+=50",
+        scrub: true,
+      },
+    });
+
+    tl.add([
+      gsap.to("body", {
+        backgroundColor: "black",
+        duration: 0.01,
+      }),
+      gsap.to(".about-title", {
+        color: "#dfdff2",
+        duration: 0.01,
+        ease: "power1.inOut",
+      }),
+      gsap.to(".about-text", {
+        color: "#dfdff2",
+        duration: 0.01,
+        ease: "power1.inOut",
+      }),
+      gsap.to(".about-btn", {
+        backgroundColor: "#dfdff2",
+        color: "black",
+        duration: 0.01,
+        ease: "power1.inOut",
+      }),
+      gsap.to(".about-trigger > div:first-child", {
+        backgroundColor: "#dfdff2",
+        duration: 0.01,
+        ease: "power1.inOut",
+      }),
+    ]);
   });
 
   return (
@@ -32,16 +77,36 @@ const About: FunctionComponent<AboutProps> = () => {
           title="We're b<b>u</b>ilding<br />a new <trigger>trigger1</trigger> realit<b>y</b><br />that rew<b>a</b>rds<br />play<b>e</b>rs <trigger>trigger2</trigger> and<br />e<b>m</b>powers<br />hu<b>m</b>ans & AI<br />to <trigger>trigger3</trigger> thri<b>v</b>e"
           subTitle="Who we are"
           triggerMap={{
-            trigger1: <InteractiveDot imgSrc="img/about-1.webp" />,
-            trigger2: <InteractiveDot imgSrc="img/about-2.webp" />,
-            trigger3: <InteractiveDot imgSrc="img/about-3.webp" />,
+            trigger1: (
+              <InteractiveDot
+                className="about-trigger"
+                imgSrc="img/about-1.webp"
+              />
+            ),
+            trigger2: (
+              <InteractiveDot
+                className="about-trigger"
+                imgSrc="img/about-2.webp"
+              />
+            ),
+            trigger3: (
+              <InteractiveDot
+                className="about-trigger"
+                imgSrc="img/about-3.webp"
+              />
+            ),
           }}
+          styles={{ container: "about-title" }}
         />
-        <p className="max-w-[380px] text-body-3 text-center">
+        <p className="about-text max-w-[380px] text-body-3 text-center">
           Zentry envisions a future where players, emerging tech, and a new
           economy unite at the convergence of gaming and AI.
         </p>
-        <Button text="Discover who we are" variant="secondary" />
+        <Button
+          text="Discover who we are"
+          variant="secondary"
+          styles={{ container: "about-btn" }}
+        />
       </div>
     </section>
   );
