@@ -14,33 +14,6 @@ interface FeaturesProps {}
 
 const Features: FunctionComponent<FeaturesProps> = () => {
   useGSAP(() => {
-    const cards = gsap.utils.toArray(".bento-tilt") as HTMLElement[];
-    cards.forEach((card: HTMLElement) => {
-      gsap.fromTo(
-        card,
-        {
-          transform:
-            "perspective(700px) translate3d(0px, 100px, 0) rotateX(-40deg)",
-          opacity: 0,
-        },
-        {
-          transform:
-            "perspective(700px) translate3d(0px, 0px, 0) rotateX(0deg)",
-          opacity: 1,
-          ease: "power2.in",
-          stagger: 0.2,
-          scrollTrigger: {
-            trigger: card,
-            start: "top bottom-=50",
-            end: "+=50",
-            scrub: 1,
-          },
-        }
-      );
-    });
-  });
-
-  useGSAP(() => {
     gsap.to("body", {
       scrollTrigger: {
         trigger: "#features",
