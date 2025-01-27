@@ -294,3 +294,18 @@ body {
     opacity: 0.8;
   }
 }
+
+@keyframes pulse-scale {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.25);
+  }
+}
+
+.animate-pulse-scale {
+  animation: pulse-scale 2s ease-in-out;
+  animation-iteration-count: 3;
+}

@@ -1,4 +1,4 @@
-import { FunctionComponent, useRef } from "react";
+import { FunctionComponent, useRef, useEffect } from "react";
 import AnimatedTitle from "./ui/AnimatedTitle";
 import Button from "./ui/Button";
 import { useGSAP } from "@gsap/react";
@@ -121,11 +121,43 @@ interface InteractiveDotProps {
 
 const InteractiveDot = ({ className, imgSrc }: InteractiveDotProps) => {
   const cardRef = useRef<HTMLDivElement>(null);
+  const dotRef = useRef<HTMLDivElement>(null);
 
   const { transformStyle, handleMouseMove } = useTiltEffect(cardRef, {
     perspective: 500,
     delta: 10,
   });
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            // Remove and re-add the class to restart the animation
+            (entry.target as HTMLElement).classList.remove(
+              "animate-pulse-scale"
+            );
+            // Force a reflow
+            void (entry.target as HTMLElement).offsetWidth;
+            (entry.target as HTMLElement).classList.add("animate-pulse-scale");
+          }
+        });
+      },
+      {
+        threshold: 0.5, // Trigger when 50% of the element is visible
+      }
+    );
+
+    if (dotRef.current) {
+      observer.observe(dotRef.current);
+    }
+
+    return () => {
+      if (dotRef.current) {
+        observer.unobserve(dotRef.current);
+      }
+    };
+  }, []);
 
   const handleMouseEnter = () => {
     if (!cardRef.current) return;
@@ -153,7 +185,10 @@ const InteractiveDot = ({ className, imgSrc }: InteractiveDotProps) => {
 
   return (
     <div className={cn("group relative flex-center p-3 z-50", className)}>
-      <div className="w-8 h-8 bg-black rounded scale-100 opacity-100 group-hover:scale-125 group-hover:opacity-50 transition-all duration-700" />
+      <div
+        ref={dotRef}
+        className="w-8 h-8 bg-black rounded scale-100 opacity-100 group-hover:scale-125 group-hover:opacity-50 transition-all duration-700 animate-pulse-scale"
+      />
       <div className="absolute-center w-64 h-44 cursor-pointer overflow-hidden rounded-lg z-50">
         <div
           ref={cardRef}
