@@ -1,5 +1,11 @@
 import gsap from "gsap";
-import { forwardRef, FunctionComponent, useEffect, useRef } from "react";
+import {
+  cloneElement,
+  forwardRef,
+  FunctionComponent,
+  useEffect,
+  useRef,
+} from "react";
 import { cn } from "../../utils/cn";
 import { TextPlugin } from "gsap/all";
 
@@ -13,6 +19,9 @@ interface AnimatedTitleProps {
     container?: string;
     title?: string;
     subtitle?: string;
+  };
+  triggerMap?: {
+    [key: string]: React.ReactElement;
   };
 }
 
@@ -58,7 +67,13 @@ export default AnimatedTitle;
 
 export const Title = forwardRef(
   (
-    { title, subTitle, styles, align = "center" }: AnimatedTitleProps,
+    {
+      title,
+      subTitle,
+      styles,
+      align = "center",
+      triggerMap,
+    }: AnimatedTitleProps,
     ref: React.ForwardedRef<HTMLDivElement>
   ) => {
     return (
@@ -79,13 +94,28 @@ export const Title = forwardRef(
                 "justify-end": align === "right",
               })}
             >
-              {line.split(" ").map((word, i) => (
-                <span
-                  key={i}
-                  className="animated-word"
-                  dangerouslySetInnerHTML={{ __html: word }}
-                />
-              ))}
+              {line.split(" ").map((word, i) => {
+                const triggerMatch = word.match(/<trigger>(.*?)<\/trigger>/);
+                if (triggerMatch) {
+                  const triggerComp = triggerMap?.[triggerMatch[1]];
+                  return triggerComp
+                    ? cloneElement(triggerComp, {
+                        key: i,
+                        className: cn(
+                          "animated-word",
+                          triggerComp.props.className
+                        ),
+                      })
+                    : null;
+                }
+                return (
+                  <span
+                    key={i}
+                    className="animated-word"
+                    dangerouslySetInnerHTML={{ __html: word }}
+                  />
+                );
+              })}
             </div>
           ))}
         </div>

@@ -6,6 +6,7 @@ import Story from "./components/Story";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import Vault from "./components/Vault";
+import About from "./components/About";
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
       <Features />
       <Story />
       <Vault />
+      <About />
       <Contact />
       <Footer />
     </main>
