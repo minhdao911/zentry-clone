@@ -79,12 +79,26 @@ export const Title = forwardRef(
     return (
       <div
         ref={ref}
-        className={cn("flex flex-col justify-center gap-8", styles?.container)}
+        className={cn(
+          "flex flex-col justify-center gap-8",
+          {
+            "items-start": align === "left",
+            "items-center": align === "center",
+            "items-end": align === "right",
+          },
+          styles?.container
+        )}
       >
         {subTitle && (
           <h2 className={cn("animated-subtitle", styles?.subtitle)} />
         )}
-        <div className={cn("animated-title", styles?.title)}>
+        <div
+          className={cn(
+            "animated-title",
+            align !== "center" && "!p-0",
+            styles?.title
+          )}
+        >
           {title.split("<br />").map((line, index) => (
             <div
               key={index}

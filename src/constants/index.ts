@@ -119,3 +119,80 @@ export const vaultItems = [
       "ZENT holders thrive as Zentry grows, benefiting from the expansive partnerships, treasury investment and economic activities.",
   },
 ];
+
+export const treasuryItems = [
+  {
+    text: "Liquid token",
+    value: 70,
+    color: "bg-black",
+  },
+  {
+    text: "Investments",
+    value: 20,
+    color: "bg-zentry-yellow-300",
+  },
+  {
+    text: "NFT assets",
+    value: 10,
+    color: "bg-zentry-blue-75",
+  },
+];
+
+export const backers = [
+  {
+    name: "Coinbase Ventures",
+    type: "backer",
+  },
+  {
+    name: "Binance Labs",
+    type: "backer",
+  },
+  {
+    name: "Definance Capital",
+    type: "backer",
+  },
+  {
+    name: "Pantera Capital",
+    type: "backer",
+  },
+  {
+    name: "Animoca Brands",
+    type: "backer",
+  },
+  {
+    name: "Play Ventures",
+    type: "backer",
+  },
+  {
+    name: "Skyvision Capital",
+    type: "backer",
+  },
+  {
+    name: "Vessel Capital",
+    type: "backer",
+  },
+  {
+    name: "Arche Fund",
+    type: "backer",
+  },
+  {
+    name: "Marblex",
+    type: "gaming",
+  },
+  {
+    name: "Fnatic",
+    type: "gaming",
+  },
+  {
+    name: "Xset",
+    type: "gaming",
+  },
+  {
+    name: "Jambo",
+    type: "web3",
+  },
+  {
+    name: "AWS",
+    type: "brands",
+  },
+];
