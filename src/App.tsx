@@ -8,10 +8,11 @@ import Footer from "./components/Footer";
 import Vault from "./components/Vault";
 import About from "./components/About";
 import Overview from "./components/Overview";
+import Backers from "./components/Backers";
 
 const App = () => {
   return (
-    <main className="relative min-h-screen w-screen overflow-x-hidden">
+    <main className="relative min-h-screen w-screen">
       <Navbar />
       <Hero />
       <Welcome />
@@ -20,6 +21,7 @@ const App = () => {
       <Vault />
       <About />
       <Overview />
+      <Backers />
       <Contact />
       <Footer />
     </main>

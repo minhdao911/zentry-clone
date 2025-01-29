@@ -18,7 +18,7 @@ const Overview: FunctionComponent<OverviewProps> = () => {
         align="left"
         styles={{ container: "text-zentry-blue-75 mb-20" }}
       />
-      <div className="container flex flex-col lg:flex-row gap-6">
+      <div className="container flex flex-col lg:flex-row gap-6 mx-auto">
         <div className="flex flex-col items-end gap-6 flex-1 pt-28">
           <BentoCard
             src="videos/overview-1.webm"

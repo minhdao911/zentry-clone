@@ -138,61 +138,108 @@ export const treasuryItems = [
   },
 ];
 
+export const partnersDescription = [
+  {
+    boldText: "Our partners",
+    text: "include top-tier VCs, funds, and companies, providing expertise, network and resources to fuel our project's success.",
+  },
+  {
+    boldText: "Our gaming partners",
+    text: "span projects, communities, protocols, & infrastructure, accelerating expansive growth of the new gaming era.",
+  },
+  {
+    boldText: "Our Web3 partners",
+    text: "support tech & community, driving cutting-edge innovation and a vibrant ecosystem users.",
+  },
+  {
+    boldText: "Our brand partners",
+    text: "cover tech, gaming, entertainment, & lifestyle sectors, enhancing our reach and player experience.",
+  },
+];
+
 export const backers = [
   {
     name: "Coinbase Ventures",
     type: "backer",
+    image: "img/backers-coinbase.webp",
+    description: partnersDescription[0],
   },
   {
     name: "Binance Labs",
     type: "backer",
+    image: "img/backers-binance.webp",
+    description: partnersDescription[0],
   },
   {
     name: "Definance Capital",
     type: "backer",
+    image: "img/backers-definance.webp",
+    description: partnersDescription[0],
   },
   {
     name: "Pantera Capital",
     type: "backer",
+    image: "img/backers-pantera.webp",
+    description: partnersDescription[0],
   },
   {
     name: "Animoca Brands",
     type: "backer",
+    image: "img/backers-animoca.webp",
+    description: partnersDescription[0],
   },
   {
     name: "Play Ventures",
     type: "backer",
+    image: "img/backers-play.webp",
+    description: partnersDescription[0],
   },
   {
     name: "Skyvision Capital",
     type: "backer",
+    image: "img/backers-skyvision.webp",
+    description: partnersDescription[0],
   },
   {
     name: "Vessel Capital",
     type: "backer",
+    image: "img/backers-vessel.webp",
+    description: partnersDescription[0],
   },
   {
     name: "Arche Fund",
     type: "backer",
+    image: "img/backers-arche.webp",
+    description: partnersDescription[0],
   },
   {
     name: "Marblex",
     type: "gaming",
+    image: "img/backers-marblex.webp",
+    description: partnersDescription[1],
   },
   {
     name: "Fnatic",
     type: "gaming",
+    image: "img/backers-fnatic.webp",
+    description: partnersDescription[1],
   },
   {
     name: "Xset",
     type: "gaming",
+    image: "img/backers-xset.webp",
+    description: partnersDescription[1],
   },
   {
     name: "Jambo",
     type: "web3",
+    image: "img/backers-jambo.webp",
+    description: partnersDescription[2],
   },
   {
     name: "AWS",
     type: "brands",
+    image: "img/backers-aws.webp",
+    description: partnersDescription[3],
   },
 ];
