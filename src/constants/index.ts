@@ -243,3 +243,17 @@ export const backers = [
     description: partnersDescription[3],
   },
 ];
+
+export const updates = [
+  {
+    date: "09.05.2024",
+    title:
+      "Nexus: Zentry's Social Portal Bridging Human & Al in the Global Play Economy",
+    image: "img/gallery-2.webp",
+  },
+  {
+    date: "22.11.2024",
+    title: "Zentry Whitepaper: The Blueprint to the Metagame",
+    image: "img/gallery-3.webp",
+  },
+];

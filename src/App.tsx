@@ -9,6 +9,7 @@ import Vault from "./components/Vault";
 import About from "./components/About";
 import Overview from "./components/Overview";
 import Backers from "./components/Backers";
+import Updates from "./components/Updates";
 
 const App = () => {
   return (
@@ -22,6 +23,7 @@ const App = () => {
       <About />
       <Overview />
       <Backers />
+      <Updates />
       <Contact />
       <Footer />
     </main>

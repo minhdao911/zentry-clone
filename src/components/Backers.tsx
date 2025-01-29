@@ -20,7 +20,7 @@ const Backers: FunctionComponent<BackersProps> = () => {
     ScrollTrigger.create({
       trigger: "#backers",
       start: "top center",
-      end: "+=600",
+      end: "+=850",
       onUpdate: (self) => {
         // Calculate which item should be active based on scroll progress
         const progress = self.progress;
@@ -34,36 +34,99 @@ const Backers: FunctionComponent<BackersProps> = () => {
     });
   });
 
+  useGSAP(() => {
+    gsap.fromTo(
+      "body",
+      {
+        backgroundColor: "black",
+      },
+      {
+        scrollTrigger: {
+          trigger: "#backers",
+          start: "bottom center+=200",
+          end: "+=50",
+          scrub: true,
+          onLeaveBack: () => {
+            gsap.to("body", {
+              backgroundColor: "black",
+              duration: 0.01,
+            });
+          },
+        },
+        backgroundColor: "#dfdff2",
+        duration: 0.01,
+        onComplete: () => {
+          gsap.to(".backers-item > p:last-child", {
+            color: "black",
+            duration: 0.01,
+          });
+          gsap.to(".backers-item > p:first-child", {
+            color: "#737373",
+            duration: 0.01,
+          });
+          gsap.to(".backers-item > img", {
+            opacity: 0,
+            duration: 0.01,
+          });
+          gsap.to(".backers-description", {
+            display: "hidden",
+            duration: 0.01,
+          });
+        },
+        onReverseComplete: () => {
+          gsap.to(".backers-item > p:first-child", {
+            clearProps: true,
+            duration: 0.01,
+          });
+          gsap.to(".backers-item > p:last-child", {
+            clearProps: true,
+            duration: 0.01,
+          });
+          gsap.to(".backers-item > img", {
+            clearProps: true,
+            duration: 0.01,
+          });
+          gsap.to(".backers-description", {
+            clearProps: true,
+            duration: 0.01,
+          });
+        },
+      }
+    );
+  });
+
   return (
-    <section className="relative min-h-dvh w-screen px-10 py-56">
+    <section id="backers" className="relative min-h-dvh w-screen px-10 py-56">
       <div className="container grid grid-cols-2 mx-auto">
         <div className="relative col-span-2 lg:col-span-1 max-h-[93%]">
-          <div className="sticky hidden top-[50lvh] z-10 lg:block">
-            <div className="absolute left-1/3 -translate-x-1/3">
+          <div className="backers-description">
+            <div className="sticky hidden top-[50lvh] z-10 lg:block">
+              <div className="absolute left-1/3 -translate-x-1/3">
+                <Description
+                  boldText={activeDescription.boldText}
+                  text={activeDescription.text}
+                />
+              </div>
+            </div>
+            <div className="block lg:hidden pl-20 pb-20 max-w-[500px]">
               <Description
-                boldText={activeDescription.boldText}
-                text={activeDescription.text}
+                className="text-xl leading-6"
+                boldText="Our partners"
+                text="span gaming, Web3, Al, and beyond-backing our growth, sparking innovation, and elevating the player experience."
               />
             </div>
           </div>
-          <div className="block lg:hidden pl-20 pb-20 max-w-[500px]">
-            <Description
-              className="text-xl leading-6"
-              boldText="Our partners"
-              text="span gaming, Web3, Al, and beyond-backing our growth, sparking innovation, and elevating the player experience."
-            />
-          </div>
         </div>
         <div className="col-span-2 lg:col-span-1">
-          <div id="backers" className="relative w-full flex flex-col">
+          <div className="relative w-full flex flex-col">
             <p className="absolute hidden -top-12 left-0 font-zentry text-zentry-blue-75 text-5xl lg:block">
               Our partners
             </p>
             {backers.map(({ name, image, type }, index) => (
-              <div className="backers-item flex items-center justify-between">
+              <div className="flex items-center justify-between">
                 <div
                   className={cn(
-                    "relative flex items-start text-zentry-blue-75",
+                    "backers-item relative flex items-start text-zentry-blue-75",
                     activeItem === index && "text-zentry-yellow-300"
                   )}
                 >
