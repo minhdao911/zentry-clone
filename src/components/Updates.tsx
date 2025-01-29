@@ -29,7 +29,7 @@ const Updates: FunctionComponent<UpdatesProps> = () => {
                 <AnimatedImg
                   src={image}
                   alt={title}
-                  delta={3}
+                  multiplier={3}
                   className="w-full border border-black rounded-lg"
                 />
                 <div className="flex gap-10 mt-5 w-full pr-10">

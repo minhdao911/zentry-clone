@@ -1,11 +1,11 @@
 import { FunctionComponent, useRef } from "react";
-import gsap from "gsap";
 import { cn } from "../../utils/cn";
+import useTiltEffect from "../../hooks/use-tilt-effect";
 
 interface AnimatedImgProps {
   src: string;
   alt: string;
-  delta?: number;
+  multiplier?: number;
   size?: number;
   className?: string;
 }
@@ -13,47 +13,19 @@ interface AnimatedImgProps {
 const AnimatedImg: FunctionComponent<AnimatedImgProps> = ({
   src,
   alt,
-  delta = 10,
+  multiplier = 10,
   size,
   className,
 }) => {
   const frameRef = useRef<HTMLImageElement>(null);
 
-  const handleMouseLeave = () => {
-    if (!frameRef.current) return;
-
-    gsap.to(frameRef.current, {
-      duration: 0.3,
-      rotateX: 0,
-      rotateY: 0,
-      ease: "power1.inOut",
-    });
-  };
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!frameRef.current) return;
-
-    const { clientX, clientY } = e;
-
-    const { left, top, width, height } =
-      frameRef.current.getBoundingClientRect();
-    const x = clientX - left;
-    const y = clientY - top;
-
-    const centerX = width / 2;
-    const centerY = height / 2;
-
-    const rotateX = ((y - centerY) / centerY) * -delta;
-    const rotateY = ((x - centerX) / centerX) * delta;
-
-    gsap.to(frameRef.current, {
-      duration: 0.3,
-      rotateX,
-      rotateY,
-      transformPerspective: 500,
-      ease: "power1.inOut",
-    });
-  };
+  const { transformStyle, handleMouseMove, handleMouseLeave } = useTiltEffect(
+    frameRef,
+    {
+      perspective: 500,
+      multiplier,
+    }
+  );
 
   return (
     <img
@@ -63,6 +35,7 @@ const AnimatedImg: FunctionComponent<AnimatedImgProps> = ({
       width={size}
       height={size}
       className={cn("object-contain", className)}
+      style={{ transform: transformStyle }}
       onMouseLeave={handleMouseLeave}
       onMouseMove={handleMouseMove}
     />

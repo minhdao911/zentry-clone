@@ -125,7 +125,7 @@ const InteractiveDot = ({ className, imgSrc }: InteractiveDotProps) => {
 
   const { transformStyle, handleMouseMove } = useTiltEffect(cardRef, {
     perspective: 500,
-    delta: 10,
+    multiplier: 10,
   });
 
   useEffect(() => {

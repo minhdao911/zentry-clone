@@ -99,8 +99,10 @@ export const BentoTilt: FunctionComponent<BentoTiltProps> = ({
 }) => {
   const itemRef = useRef<HTMLDivElement>(null);
 
-  const { transformStyle, handleMouseMove, setTransformStyle } =
-    useTiltEffect(itemRef);
+  const { transformStyle, handleMouseMove, setTransformStyle } = useTiltEffect(
+    itemRef,
+    { scale: 0.95 }
+  );
 
   const handleMouseLeave = () => {
     setTransformStyle("");

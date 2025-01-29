@@ -4,10 +4,17 @@ const useTiltEffect = (
   ref: React.RefObject<HTMLDivElement>,
   config?: {
     perspective?: number;
-    delta?: number;
+    multiplier?: number;
+    scale?: number;
   }
 ) => {
   const [transformStyle, setTransformStyle] = useState("");
+
+  const handleMouseLeave = () => {
+    if (!ref.current) return;
+
+    setTransformStyle("");
+  };
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!ref.current) return;
@@ -23,17 +30,26 @@ const useTiltEffect = (
     const relativeX = (e.clientX - left) / width;
     const relativeY = (e.clientY - top) / height;
 
-    const tiltX = (relativeX - 0.5) * (config?.delta ?? 5);
-    const tiltY = (relativeY - 0.5) * -(config?.delta ?? 5);
+    const tiltX = (relativeX - 0.5) * (config?.multiplier ?? 5);
+    const tiltY = (relativeY - 0.5) * -(config?.multiplier ?? 5);
 
     const newTransform = `perspective(${
       config?.perspective ?? 700
-    }px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale3d(0.95, 0.95, 0.95)`;
+    }px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) ${
+      config?.scale
+        ? `scale3d(${config?.scale}, ${config?.scale}, ${config?.scale})`
+        : ""
+    }`;
 
     setTransformStyle(newTransform);
   };
 
-  return { transformStyle, handleMouseMove, setTransformStyle };
+  return {
+    transformStyle,
+    setTransformStyle,
+    handleMouseMove,
+    handleMouseLeave,
+  };
 };
 
 export default useTiltEffect;
