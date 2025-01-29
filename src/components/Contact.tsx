@@ -1,6 +1,7 @@
 import { FunctionComponent } from "react";
 import AnimatedTitle, { Title } from "./ui/AnimatedTitle";
 import Button from "./ui/Button";
+import ImageClipBox from "./ui/ImageClipBox";
 
 interface ContactProps {}
 
@@ -10,6 +11,7 @@ const Contact: FunctionComponent<ContactProps> = () => {
       <div className="relative rounded-lg bg-black px-10 md:px-0 py-24 overflow-hidden">
         <div className="absolute top-0 hidden md:block md:left-0 lg:left-20 w-96">
           <ImageClipBox
+            startY={-100}
             className="contact-clip-path-1"
             src="img/contact-1.webp"
           />
@@ -17,6 +19,7 @@ const Contact: FunctionComponent<ContactProps> = () => {
 
         <div className="absolute w-[22rem] left-1/2 translate-x-[-50%] -bottom-20 md:left-[15rem] lg:left-[20rem] md:w-96">
           <ImageClipBox
+            startY={100}
             className="contact-clip-path-2"
             src="img/contact-2.webp"
           />
@@ -31,9 +34,14 @@ const Contact: FunctionComponent<ContactProps> = () => {
           <Button text="Contact us" />
         </div>
       </div>
-      <div className="absolute hidden sm:block -top-[13rem] left-1/2 translate-x-[-50%] md:w-80 md:left-auto md:-right-[9rem] md:top-0">
-        <ImageClipBox className="absolute" src="img/swordman-partial.webp" />
+      <div className="absolute hidden sm:block -top-[3rem] left-1/2 translate-x-[-50%] md:w-80 md:left-auto md:-right-[9rem] md:top-12">
         <ImageClipBox
+          startY={100}
+          className="absolute sword-man-clip-path-1"
+          src="img/swordman-partial.webp"
+        />
+        <ImageClipBox
+          startY={100}
           className="sword-man-clip-path-2 md:sword-man-clip-path"
           src="img/swordman.webp"
         />
@@ -53,23 +61,3 @@ const Contact: FunctionComponent<ContactProps> = () => {
 };
 
 export default Contact;
-
-interface ImageClipBoxProps {
-  src: string;
-  className?: string;
-}
-
-const ImageClipBox: FunctionComponent<ImageClipBoxProps> = ({
-  src,
-  className,
-}) => {
-  return (
-    <div className={className}>
-      <img
-        src={src}
-        alt="clip"
-        className="object-cover object-center w-full h-full"
-      />
-    </div>
-  );
-};
