@@ -23,6 +23,11 @@ interface AnimatedTitleProps {
   triggerMap?: {
     [key: string]: React.ReactElement;
   };
+  config?: {
+    scrollStart?: string;
+    scrollEnd?: string;
+    stagger?: number;
+  };
 }
 
 const AnimatedTitle: FunctionComponent<AnimatedTitleProps> = (props) => {
@@ -33,8 +38,8 @@ const AnimatedTitle: FunctionComponent<AnimatedTitleProps> = (props) => {
       const titleAnimation = gsap.timeline({
         scrollTrigger: {
           trigger: containerRef.current,
-          start: "100 bottom",
-          end: "center bottom",
+          start: props.config?.scrollStart ?? "100 bottom",
+          end: props.config?.scrollEnd ?? "center bottom",
           toggleActions: "play none none reverse",
         },
       });
@@ -53,7 +58,7 @@ const AnimatedTitle: FunctionComponent<AnimatedTitleProps> = (props) => {
         opacity: 1,
         transform: "translate3d(0,0,0) rotateY(0deg) rotateX(0deg)",
         ease: "power2.inOut",
-        stagger: 0.02,
+        stagger: props.config?.stagger ?? 0.02,
       });
     }, containerRef);
 

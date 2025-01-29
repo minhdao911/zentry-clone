@@ -43,7 +43,7 @@ const Backers: FunctionComponent<BackersProps> = () => {
       {
         scrollTrigger: {
           trigger: "#backers",
-          start: "bottom center+=200",
+          start: "bottom center+=400",
           end: "+=50",
           scrub: true,
           onLeaveBack: () => {
@@ -56,11 +56,11 @@ const Backers: FunctionComponent<BackersProps> = () => {
         backgroundColor: "#dfdff2",
         duration: 0.01,
         onComplete: () => {
-          gsap.to(".backers-item > p:last-child", {
+          gsap.to(".backers-item > div > p:last-child", {
             color: "black",
             duration: 0.01,
           });
-          gsap.to(".backers-item > p:first-child", {
+          gsap.to(".backers-item > div > p:first-child", {
             color: "#737373",
             duration: 0.01,
           });
@@ -74,11 +74,11 @@ const Backers: FunctionComponent<BackersProps> = () => {
           });
         },
         onReverseComplete: () => {
-          gsap.to(".backers-item > p:first-child", {
+          gsap.to(".backers-item > div > p:first-child", {
             clearProps: true,
             duration: 0.01,
           });
-          gsap.to(".backers-item > p:last-child", {
+          gsap.to(".backers-item > div > p:last-child", {
             clearProps: true,
             duration: 0.01,
           });
@@ -121,10 +121,10 @@ const Backers: FunctionComponent<BackersProps> = () => {
               Our partners
             </p>
             {backers.map(({ name, image, type }, index) => (
-              <div className="flex items-center justify-between">
+              <div className="backers-item flex items-center justify-between">
                 <div
                   className={cn(
-                    "backers-item relative flex items-start text-zentry-blue-75",
+                    "relative flex items-start text-zentry-blue-75",
                     activeItem === index && "text-zentry-yellow-300"
                   )}
                 >

@@ -38,7 +38,7 @@ const Story: FunctionComponent<StoryProps> = () => {
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: "#story",
-        start: "bottom bottom",
+        start: "bottom bottom-=150",
         end: "+=50",
         scrub: 1,
       },

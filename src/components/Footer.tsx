@@ -1,30 +1,29 @@
-import { FunctionComponent, useState } from "react";
+import { FunctionComponent, useRef, useState } from "react";
 import Logo from "../assets/logo.svg?react";
 import { footerLinks } from "../constants";
 import Button from "./ui/Button";
+import useTiltEffect from "../hooks/use-tilt-effect";
 
 interface FooterProps {}
 
 const Footer: FunctionComponent<FooterProps> = () => {
-  const [transform, setTransform] = useState({ x: 0, y: 0 });
+  const textRef = useRef<HTMLDivElement>(null);
 
-  const handleMouseMove = (e: React.MouseEvent) => {
-    const { clientX, clientY, currentTarget } = e;
-    const { offsetWidth, offsetHeight } = currentTarget as HTMLElement;
-    const x = (clientX / offsetWidth) * 30 - 15; // Adjust the multiplier for more/less tilt
-    const y = (clientY / offsetHeight) * 30 - 15;
-    setTransform({ x, y });
-  };
+  const { transformStyle, handleMouseMove, handleMouseLeave } = useTiltEffect(
+    textRef,
+    { multiplier: 10 }
+  );
 
   return (
     <footer className="bg-zentry-violet-500">
       <h1
-        className="text-[35vw] font-zentry special-font text-center tracking-tight leading-none mb-16 w-full overflow-hidden zentry-text"
+        ref={textRef}
+        className="text-[35vw] font-zentry special-font text-center tracking-tight leading-none mb-16 w-full overflow-hidden zentry-text cursor-default"
         style={{
-          transform: `rotateY(${transform.x}deg) rotateX(${transform.y}deg)`,
+          transform: transformStyle,
         }}
         onMouseMove={handleMouseMove}
-        onMouseLeave={() => setTransform({ x: 0, y: 0 })}
+        onMouseLeave={handleMouseLeave}
       >
         Zentr<b>y</b>
       </h1>

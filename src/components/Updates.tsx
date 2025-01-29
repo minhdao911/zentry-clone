@@ -8,11 +8,17 @@ interface UpdatesProps {}
 
 const Updates: FunctionComponent<UpdatesProps> = () => {
   return (
-    <section className="min-h-dvh w-screen px-10 pt-28 pb-56">
+    <section className="w-screen px-10 pb-20 sm:pb-56 md:pb-20">
       <div className="container grid grid-cols-2 mx-auto gap-28 lg:gap-0">
         <div className="relative col-span-1">
           <div className="sticky top-10 z-10">
-            <AnimatedTitle title="Latest<br />updates" align="left" />
+            <AnimatedTitle
+              title="Latest<br />updates"
+              align="left"
+              config={{
+                scrollStart: "top center+=400",
+              }}
+            />
             <div className="flex flex-col gap-5 mt-5">
               <p className="font-roobert-regular lg:text-sm w-80 lg:w-72 text-neutral-900">
                 Stay updated with the latest news, events, and updates in our
