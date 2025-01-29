@@ -2,6 +2,7 @@ import { FunctionComponent } from "react";
 import AnimatedTitle from "./ui/AnimatedTitle";
 import Button from "./ui/Button";
 import { updates } from "../constants";
+import AnimatedImg from "./ui/AnimatedImg";
 
 interface UpdatesProps {}
 
@@ -24,12 +25,11 @@ const Updates: FunctionComponent<UpdatesProps> = () => {
         <div className="col-span-2 lg:col-span-1">
           <div className="flex flex-col gap-10">
             {updates.map(({ date, title, image }) => (
-              <div className="w-full md:w-[500px] md:odd:self-end lg:odd:self-auto">
-                <img
+              <div className="w-full sm:w-[500px] sm:odd:self-end lg:odd:self-auto">
+                <AnimatedImg
                   src={image}
                   alt={title}
-                  width={500}
-                  height={500}
+                  delta={3}
                   className="w-full border border-black rounded-lg"
                 />
                 <div className="flex gap-10 mt-5 w-full pr-10">

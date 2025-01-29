@@ -1,18 +1,17 @@
-import { FunctionComponent, useRef } from "react";
+import { FunctionComponent } from "react";
 import AnimatedTitle from "./ui/AnimatedTitle";
 import gsap from "gsap";
 import RoundedCorners from "./ui/RoundedCorners";
 import Button from "./ui/Button";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/all";
+import AnimatedImg from "./ui/AnimatedImg";
 
 gsap.registerPlugin(ScrollTrigger);
 
 interface StoryProps {}
 
 const Story: FunctionComponent<StoryProps> = () => {
-  const frameRef = useRef<HTMLImageElement>(null);
-
   useGSAP(() => {
     gsap.fromTo(
       ".story-img-content",
@@ -71,42 +70,6 @@ const Story: FunctionComponent<StoryProps> = () => {
     ]);
   });
 
-  const handleMouseLeave = () => {
-    if (!frameRef.current) return;
-
-    gsap.to(frameRef.current, {
-      duration: 0.3,
-      rotateX: 0,
-      rotateY: 0,
-      ease: "power1.inOut",
-    });
-  };
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!frameRef.current) return;
-
-    const { clientX, clientY } = e;
-
-    const { left, top, width, height } =
-      frameRef.current.getBoundingClientRect();
-    const x = clientX - left;
-    const y = clientY - top;
-
-    const centerX = width / 2;
-    const centerY = height / 2;
-
-    const rotateX = ((y - centerY) / centerY) * -10;
-    const rotateY = ((x - centerX) / centerX) * 10;
-
-    gsap.to(frameRef.current, {
-      duration: 0.3,
-      rotateX,
-      rotateY,
-      transformPerspective: 500,
-      ease: "power1.inOut",
-    });
-  };
-
   return (
     <section id="story" className="relative h-dvh w-screen pt-20 pb-52">
       <div className="container mx-auto px-3 md:px-20">
@@ -122,14 +85,7 @@ const Story: FunctionComponent<StoryProps> = () => {
         <div className="story-img-container">
           <div className="story-img-mask">
             <div className="story-img-content">
-              <img
-                ref={frameRef}
-                src="img/entrance.webp"
-                alt="Entrance"
-                className="object-contain"
-                onMouseLeave={handleMouseLeave}
-                onMouseMove={handleMouseMove}
-              />
+              <AnimatedImg src="img/entrance.webp" alt="Entrance" />
             </div>
           </div>
           <RoundedCorners />
