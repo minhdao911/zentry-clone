@@ -131,18 +131,6 @@ body {
     @apply absolute size-full opacity-100;
   }
 
-  .gallery-img-container {
-    @apply size-64 overflow-hidden bg-zentry-violet-500;
-  }
-
-  .gallery-img {
-    @apply size-full bg-cover;
-  }
-
-  .gallery-img-4 {
-    @apply sm:size-80 md:h-96 md:w-[25rem] rounded-lg;
-  }
-
   .sword-man-clip-path {
     clip-path: polygon(16% 0, 89% 15%, 75% 100%, 0 97%);
   }
@@ -158,35 +146,50 @@ body {
   .contact-clip-path-2 {
     clip-path: polygon(38% 10%, 78% 30%, 50% 100%, 12% 58%);
   }
-}
 
-.zentry-text {
-  transition: transform 0.1s;
-  transform-style: preserve-3d;
-  perspective: 1000px;
-}
-
-.indicator-line {
-  @apply h-1 w-px rounded-full bg-white transition-all duration-200 ease-in-out;
-}
-
-.indicator-line.active {
-  animation: indicator-line 1s ease infinite;
-  animation-delay: calc(var(--animation-order) * 0.1s);
-}
-
-@keyframes indicator-line {
-  0% {
-    height: 4px;
-    /* transform: translateY(-0px); */
+  .zentry-text {
+    transition: transform 0.1s;
+    transform-style: preserve-3d;
+    perspective: 1000px;
   }
-  50% {
-    height: 16px;
-    /* transform: translateY(-0px); */
+
+  .indicator-line {
+    @apply h-1 w-px rounded-full bg-white transition-all duration-200 ease-in-out;
   }
-  100% {
-    height: 4px;
-    /* transform: translateY(-0px); */
+
+  .indicator-line.active {
+    animation: indicator-line 1s ease infinite;
+    animation-delay: calc(var(--animation-order) * 0.1s);
+  }
+
+  @keyframes indicator-line {
+    0% {
+      height: 4px;
+      /* transform: translateY(-0px); */
+    }
+    50% {
+      height: 16px;
+      /* transform: translateY(-0px); */
+    }
+    100% {
+      height: 4px;
+      /* transform: translateY(-0px); */
+    }
+  }
+
+  .animate-pulse-scale {
+    animation: pulse-scale 2s ease-in-out;
+    animation-iteration-count: 3;
+  }
+
+  @keyframes pulse-scale {
+    0%,
+    100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.25);
+    }
   }
 }
 
@@ -293,19 +296,4 @@ body {
     transform: translateY(66%) scale(0.65);
     opacity: 0.8;
   }
-}
-
-@keyframes pulse-scale {
-  0%,
-  100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.25);
-  }
-}
-
-.animate-pulse-scale {
-  animation: pulse-scale 2s ease-in-out;
-  animation-iteration-count: 3;
 }
