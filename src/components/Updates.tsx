@@ -30,8 +30,11 @@ const Updates: FunctionComponent<UpdatesProps> = () => {
         </div>
         <div className="col-span-2 lg:col-span-1">
           <div className="flex flex-col gap-10">
-            {updates.map(({ date, title, image }) => (
-              <div className="w-full sm:w-[500px] sm:odd:self-end lg:odd:self-auto">
+            {updates.map(({ date, title, image }, index) => (
+              <div
+                key={index}
+                className="w-full sm:w-[500px] sm:odd:self-end lg:odd:self-auto"
+              >
                 <AnimatedImg
                   src={image}
                   alt={title}

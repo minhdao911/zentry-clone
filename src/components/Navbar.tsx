@@ -20,9 +20,9 @@ interface NavbarProps {}
 
 const Navbar: FunctionComponent<NavbarProps> = () => {
   const [isAudioPlaying, setIsAudioPlaying] = useState(false);
-  const [isIndicatorActive, setIsIndicatorActive] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [isNavVisible, setIsNavVisible] = useState(true);
+  const [hasInteracted, setHasInteracted] = useState(false);
 
   const navContainerRef = useRef<HTMLDivElement>(null);
   const audioRef = useRef<HTMLAudioElement>(null);
@@ -67,8 +67,10 @@ const Navbar: FunctionComponent<NavbarProps> = () => {
   }, [isAudioPlaying]);
 
   const toggleAudio = () => {
+    if (!hasInteracted) {
+      setHasInteracted(true);
+    }
     setIsAudioPlaying((prev) => !prev);
-    setIsIndicatorActive((prev) => !prev);
   };
 
   const handleMouseLeaveRightNavbar = () => {
@@ -99,7 +101,7 @@ const Navbar: FunctionComponent<NavbarProps> = () => {
       className="fixed top-4 inset-x-0 z-50 h-16 border-none transition-all duration-700 sm:inset-x-6"
     >
       <header className="absolute top-1/2 w-full -translate-y-1/2">
-        <nav className="flex size-full items-center justify-between p-4">
+        <nav className="flex size-full items-center justify-between px-6">
           <div className="flex items-center gap-7">
             <Logo className="w-8 text-zentry-blue-75" />
             <div className="flex items-center gap-3">
@@ -124,7 +126,11 @@ const Navbar: FunctionComponent<NavbarProps> = () => {
             </div>
 
             <button
-              className="flex items-center space-x-[.165rem] h-4"
+              className={cn(
+                "relative flex items-center space-x-[.165rem] h-4",
+                !hasInteracted &&
+                  "before:absolute before:inset-0 before:animate-ping before:rounded-md before:bg-zentry-blue-75/30 before:-m-0.5"
+              )}
               onClick={toggleAudio}
             >
               <audio
@@ -136,10 +142,7 @@ const Navbar: FunctionComponent<NavbarProps> = () => {
               {[1, 2, 3, 4].map((bar) => (
                 <div
                   key={bar}
-                  className={cn(
-                    "indicator-line",
-                    isIndicatorActive && "active"
-                  )}
+                  className={cn("indicator-line", isAudioPlaying && "active")}
                   style={{
                     animationDelay: `${bar * 0.3}s`,
                   }}

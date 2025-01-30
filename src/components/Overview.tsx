@@ -69,8 +69,8 @@ const Overview: FunctionComponent<OverviewProps> = () => {
                 </p>
               </div>
               <div className="w-full flex justify-between gap-2">
-                {treasuryItems.map((item) => (
-                  <div className="flex items-start gap-2.5">
+                {treasuryItems.map((item, key) => (
+                  <div key={key} className="flex items-start gap-2.5">
                     <div className={cn("size-3 rounded-full", item.color)} />
                     <div className="text-zentry-blue-75 font-general text-2xs uppercase">
                       <p className="leading-none">{item.text}</p>
@@ -121,8 +121,8 @@ const Overview: FunctionComponent<OverviewProps> = () => {
               <div className="flex flex-col items-end">
                 {backers
                   .filter((b) => b.type === "backer")
-                  .map((backer) => (
-                    <p className="font-general text-3xs uppercase">
+                  .map((backer, index) => (
+                    <p key={index} className="font-general text-3xs uppercase">
                       {backer.name}
                     </p>
                   ))}

@@ -121,7 +121,10 @@ const Backers: FunctionComponent<BackersProps> = () => {
               Our partners
             </p>
             {backers.map(({ name, image, type }, index) => (
-              <div className="backers-item flex items-center justify-between">
+              <div
+                key={index}
+                className="backers-item flex items-center justify-between"
+              >
                 <div
                   className={cn(
                     "relative flex items-start text-zentry-blue-75",
