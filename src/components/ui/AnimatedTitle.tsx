@@ -1,5 +1,11 @@
 import gsap from "gsap";
-import { forwardRef, FunctionComponent, useEffect, useRef } from "react";
+import {
+  cloneElement,
+  forwardRef,
+  FunctionComponent,
+  useEffect,
+  useRef,
+} from "react";
 import { cn } from "../../utils/cn";
 import { TextPlugin } from "gsap/all";
 
@@ -8,10 +14,19 @@ gsap.registerPlugin(TextPlugin);
 interface AnimatedTitleProps {
   title: string;
   subTitle?: string;
+  align?: "left" | "center" | "right";
   styles?: {
     container?: string;
     title?: string;
     subtitle?: string;
+  };
+  triggerMap?: {
+    [key: string]: React.ReactElement;
+  };
+  config?: {
+    scrollStart?: string;
+    scrollEnd?: string;
+    stagger?: number;
   };
 }
 
@@ -23,8 +38,8 @@ const AnimatedTitle: FunctionComponent<AnimatedTitleProps> = (props) => {
       const titleAnimation = gsap.timeline({
         scrollTrigger: {
           trigger: containerRef.current,
-          start: "100 bottom",
-          end: "center bottom",
+          start: props.config?.scrollStart ?? "100 bottom",
+          end: props.config?.scrollEnd ?? "center bottom",
           toggleActions: "play none none reverse",
         },
       });
@@ -43,7 +58,7 @@ const AnimatedTitle: FunctionComponent<AnimatedTitleProps> = (props) => {
         opacity: 1,
         transform: "translate3d(0,0,0) rotateY(0deg) rotateX(0deg)",
         ease: "power2.inOut",
-        stagger: 0.02,
+        stagger: props.config?.stagger ?? 0.02,
       });
     }, containerRef);
 
@@ -57,30 +72,69 @@ export default AnimatedTitle;
 
 export const Title = forwardRef(
   (
-    { title, subTitle, styles }: AnimatedTitleProps,
+    {
+      title,
+      subTitle,
+      styles,
+      align = "center",
+      triggerMap,
+    }: AnimatedTitleProps,
     ref: React.ForwardedRef<HTMLDivElement>
   ) => {
     return (
       <div
         ref={ref}
-        className={cn("flex flex-col justify-center gap-8", styles?.container)}
+        className={cn(
+          "flex flex-col justify-center gap-8",
+          {
+            "items-start": align === "left",
+            "items-center": align === "center",
+            "items-end": align === "right",
+          },
+          styles?.container
+        )}
       >
         {subTitle && (
           <h2 className={cn("animated-subtitle", styles?.subtitle)} />
         )}
-        <div className={cn("animated-title", styles?.title)}>
+        <div
+          className={cn(
+            "animated-title",
+            align !== "center" && "!p-0",
+            styles?.title
+          )}
+        >
           {title.split("<br />").map((line, index) => (
             <div
               key={index}
-              className="flex-center max-w-full flex-wrap gap-2 px-10 md:gap-3"
+              className={cn("flex max-w-full flex-wrap gap-2 md:gap-3", {
+                "justify-start": align === "left",
+                "justify-center": align === "center",
+                "justify-end": align === "right",
+              })}
             >
-              {line.split(" ").map((word, i) => (
-                <span
-                  key={i}
-                  className="animated-word"
-                  dangerouslySetInnerHTML={{ __html: word }}
-                />
-              ))}
+              {line.split(" ").map((word, i) => {
+                const triggerMatch = word.match(/<trigger>(.*?)<\/trigger>/);
+                if (triggerMatch) {
+                  const triggerComp = triggerMap?.[triggerMatch[1]];
+                  return triggerComp
+                    ? cloneElement(triggerComp, {
+                        key: i,
+                        className: cn(
+                          "animated-word",
+                          triggerComp.props.className
+                        ),
+                      })
+                    : null;
+                }
+                return (
+                  <span
+                    key={i}
+                    className="animated-word"
+                    dangerouslySetInnerHTML={{ __html: word }}
+                  />
+                );
+              })}
             </div>
           ))}
         </div>

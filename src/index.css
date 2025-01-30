@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;600;700&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -63,9 +65,17 @@ body {
   }
 
   .text-body {
-    @apply leading-5 2xl:leading-6 2xl:text-lg;
+    @apply text-lg leading-6 md:text-base md:leading-5;
     font-family: "roobert-regular";
     font-feature-settings: "ss02" on;
+  }
+
+  .text-body-2 {
+    @apply font-roobert-regular text-base md:text-xs;
+  }
+
+  .text-body-3 {
+    @apply font-roobert-regular text-base leading-5 md:text-sm;
   }
 
   .hero-heading {
@@ -283,4 +293,19 @@ body {
     transform: translateY(66%) scale(0.65);
     opacity: 0.8;
   }
+}
+
+@keyframes pulse-scale {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.25);
+  }
+}
+
+.animate-pulse-scale {
+  animation: pulse-scale 2s ease-in-out;
+  animation-iteration-count: 3;
 }

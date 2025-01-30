@@ -5,7 +5,7 @@ import { cn } from "../../utils/cn";
 
 type ButtonSize = "sm" | "base";
 
-type ButtonVariant = "primary" | "link";
+type ButtonVariant = "primary" | "secondary" | "tertiary" | "link";
 
 type ButtonStyles = {
   container?: string;
@@ -43,6 +43,12 @@ const Button: FunctionComponent<ButtonProps> = ({
   const variantStyles = {
     primary: {
       container: "bg-violet-50 text-black",
+    },
+    secondary: {
+      container: "bg-black text-white",
+    },
+    tertiary: {
+      container: "bg-zentry-yellow-300 text-black",
     },
     link: {
       container:

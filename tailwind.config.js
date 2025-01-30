@@ -16,6 +16,7 @@ export default {
         "circular-web": ["circular-web", "sans-serif"],
         "roobert-medium": ["roobert-medium", "sans-serif"],
         "roobert-regular": ["roobert-regular", "sans-serif"],
+        "roboto-mono": ["Roboto Mono", "monospace"],
       },
       colors: {
         "zentry-blue": {

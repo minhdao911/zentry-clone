@@ -26,8 +26,8 @@ const Welcome: FunctionComponent<WelcomeProps> = () => {
   });
 
   return (
-    <div className="min-h-screen w-screen">
-      <div className="relative mt-36">
+    <section className="min-h-screen w-screen bg-zentry-blue-75 pt-36">
+      <div className="relative">
         <AnimatedTitle
           title="Disc<b>o</b>ver the world's largest shared <a>a</a>dventure"
           subTitle="Welcome to Zentry"
@@ -39,11 +39,11 @@ const Welcome: FunctionComponent<WelcomeProps> = () => {
           </div>
           <div
             id="clip-image"
-            className="absolute left-0 top-0 size-full z-10"
+            className="absolute left-0 top-px size-full z-10"
             style={{ clipPath: "polygon(33% 9%, 63% 13%, 71% 71%, 31% 77%)" }}
           >
             <img
-              src="img/about.webp"
+              src="img/welcome.webp"
               alt="Background"
               className="absolute left-0 top-0 size-full object-cover"
             />
@@ -58,7 +58,7 @@ const Welcome: FunctionComponent<WelcomeProps> = () => {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
