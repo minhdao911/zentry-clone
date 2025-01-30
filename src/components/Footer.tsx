@@ -1,4 +1,4 @@
-import { FunctionComponent, useRef, useState } from "react";
+import { FunctionComponent, useRef } from "react";
 import Logo from "../assets/logo.svg?react";
 import { footerLinks } from "../constants";
 import Button from "./ui/Button";
