@@ -10,10 +10,12 @@ import About from "./components/About";
 import Overview from "./components/Overview";
 import Backers from "./components/Backers";
 import Updates from "./components/Updates";
+import MobileWarning from "./components/ui/MobileWarning";
 
 const App = () => {
   return (
     <main className="relative min-h-screen w-screen">
+      <MobileWarning />
       <Navbar />
       <Hero />
       <Welcome />
