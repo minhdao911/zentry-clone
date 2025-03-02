@@ -52,7 +52,7 @@ const Button: FunctionComponent<ButtonProps> = ({
     },
     link: {
       container:
-        "bg-transparent py-0.5 px-3 text-black enabled:hover:bg-black enabled:hover:text-white disabled:border-none",
+        "bg-transparent !py-0.5 !px-3 text-black enabled:hover:bg-black enabled:hover:text-white disabled:border-none",
     },
   };
 
