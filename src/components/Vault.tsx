@@ -87,21 +87,21 @@ const Vault: FunctionComponent<VaultProps> = () => {
 
         <div className="absolute-center md:translate-x-0 md:translate-y-0 md:top-auto md:left-auto md:right-0 md:bottom-0 w-[350px] md:w-[470px]">
           <video
-            src="/videos/vault-1.webm"
+            src="videos/vault-1.webm"
             autoPlay
             loop
             muted
             className={cn("hidden", currentIndex === 0 && "block")}
           />
           <video
-            src="/videos/vault-2.webm"
+            src="videos/vault-2.webm"
             autoPlay
             loop
             muted
             className={cn("hidden", currentIndex === 1 && "block")}
           />
           <video
-            src="/videos/vault-3.webm"
+            src="videos/vault-3.webm"
             autoPlay
             loop
             muted
