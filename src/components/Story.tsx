@@ -39,7 +39,7 @@ const Story: FunctionComponent<StoryProps> = () => {
       scrollTrigger: {
         trigger: "#story",
         start: "bottom bottom-=150",
-        end: "+=50",
+        end: "+=0",
         scrub: 1,
       },
     });

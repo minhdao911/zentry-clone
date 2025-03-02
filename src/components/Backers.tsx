@@ -44,7 +44,7 @@ const Backers: FunctionComponent<BackersProps> = () => {
         scrollTrigger: {
           trigger: "#backers",
           start: "bottom center+=400",
-          end: "+=50",
+          end: "+=0",
           scrub: true,
           onLeaveBack: () => {
             gsap.to("body", {
