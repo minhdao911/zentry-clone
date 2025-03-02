@@ -98,20 +98,20 @@ const Navbar: FunctionComponent<NavbarProps> = () => {
   return (
     <div
       ref={navContainerRef}
-      className="fixed top-4 inset-x-0 z-50 h-16 border-none transition-all duration-700 sm:inset-x-6"
+      className="fixed top-4 w-screen md:w-[calc(100vw-3rem)] lg:w-auto left-0 lg:left-6 inset-x-0 z-50 h-16 border-none transition-all duration-700 sm:inset-x-6"
     >
       <header className="absolute top-1/2 w-full -translate-y-1/2">
-        <nav className="flex size-full items-center justify-between px-6">
-          <div className="flex items-center gap-7">
-            <Logo className="w-8 text-zentry-blue-75" />
+        <nav className="flex size-full items-center justify-between px-3 lg:px-6">
+          <div className="flex items-center gap-2 lg:gap-7">
+            <Logo className="w-7 lg:w-8 text-zentry-blue-75" />
             <div className="flex items-center gap-3">
               <Button size="sm" text="Products" rightIcon={ArrowDownNarrow} />
               <Button size="sm" text="Whitepaper" />
             </div>
           </div>
-          <div className="flex items-center gap-10 cursor-pointer">
+          <div className="flex items-center gap-5 lg:gap-10 cursor-pointer">
             <div
-              className="flex items-center gap-10"
+              className="flex items-center gap-5 lg:gap-10"
               onMouseLeave={handleMouseLeaveRightNavbar}
             >
               <div className="nav-item-bg absolute rounded-full bg-zentry-blue-75" />
@@ -127,7 +127,7 @@ const Navbar: FunctionComponent<NavbarProps> = () => {
 
             <button
               className={cn(
-                "relative flex items-center space-x-[.165rem] h-4",
+                "relative flex items-center space-x-[.165rem] h-4 mr-3 lg:mr-0",
                 !hasInteracted &&
                   "before:absolute before:inset-0 before:animate-ping before:rounded-md before:bg-zentry-blue-75/30 before:-m-0.5"
               )}
@@ -181,7 +181,7 @@ function NavItem({ text, icon, mobile, isMobileScreen }: NavItemProps) {
       // Initial state - set position immediately
       gsap.set(".nav-item-bg", {
         left: left - (isMobileScreen ? 0 : 24),
-        top: top - 14,
+        top: top - 30,
         width: width,
         height: height,
       });
@@ -189,7 +189,7 @@ function NavItem({ text, icon, mobile, isMobileScreen }: NavItemProps) {
       // Animate to new position
       gsap.to(".nav-item-bg", {
         left: left - 24,
-        top: top - 14,
+        top: top - 30,
         width: width,
         height: height,
         duration: 0.3,
@@ -198,13 +198,15 @@ function NavItem({ text, icon, mobile, isMobileScreen }: NavItemProps) {
     }
   };
 
+  // If we're on mobile screen and this item is not marked for mobile display, hide it
+  if (isMobileScreen && !mobile) {
+    return null;
+  }
+
   return (
     <li
       className={cn(
-        "relative group flex items-center gap-[2.5px] font-general font-semibold text-xs uppercase text-zentry-blue-50 mix-blend-difference 2xl:gap-1.5",
-        {
-          "hidden md:flex": !mobile,
-        }
+        "relative group flex items-center gap-[2.5px] font-general font-semibold text-xs uppercase text-zentry-blue-50 mix-blend-difference 2xl:gap-1.5"
       )}
       onMouseEnter={handleMouseEnter}
     >

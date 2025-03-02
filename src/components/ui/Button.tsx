@@ -37,7 +37,7 @@ const Button: FunctionComponent<ButtonProps> = ({
 }) => {
   const containerStyles = {
     base: "px-5 py-2.5 2xl:px-6 2xl:py-3",
-    sm: "px-4 py-2 2xl:px-5 2xl:py-2.5",
+    sm: "px-2.5 sm:px-4 py-1.5 sm:py-2 2xl:px-5 2xl:py-2.5",
   };
 
   const variantStyles = {
@@ -143,7 +143,7 @@ const ButtonContent: FunctionComponent<ButtonContentProps> = ({
   const defaultStyles = {
     innerContainer: {
       base: "gap-2 2xl:gap-2.5",
-      sm: "gap-[6px] 2xl:gap-2",
+      sm: "gap-1 sm:gap-[6px] 2xl:gap-2",
     },
     text: {
       base: "text-2xs 2xl:text-sm",
@@ -151,7 +151,7 @@ const ButtonContent: FunctionComponent<ButtonContentProps> = ({
     },
     icon: {
       base: "w-3 2xl:w-3.5",
-      sm: "w-2 2xl:w-2.5",
+      sm: "w-1.5 sm:w-2 2xl:w-2.5",
     },
   };
 
