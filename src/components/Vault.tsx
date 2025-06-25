@@ -88,7 +88,7 @@ const Vault: FunctionComponent<VaultProps> = () => {
           />
         </div>
 
-        <div className="absolute-center md:translate-x-0 md:translate-y-0 md:top-auto md:left-auto md:right-0 md:bottom-0 w-[300px] md:w-[400px] lg:w-[470px]">
+        <div className="absolute-center md:translate-x-0 md:translate-y-0 md:top-auto md:left-auto md:right-0 md:bottom-0 w-[200px] md:w-[400px] lg:w-[470px]">
           <video
             src="videos/vault-1.webm"
             autoPlay

@@ -24,7 +24,11 @@ const Updates: FunctionComponent<UpdatesProps> = () => {
                 Stay updated with the latest news, events, and updates in our
                 ecosystem. Be part of our universe's growth and evolution.
               </p>
-              <Button text="Read all news" variant="secondary" />
+              <Button
+                text="Read all news"
+                variant="secondary"
+                styles={{ container: "w-[150px] md:w-fit" }}
+              />
             </div>
           </div>
         </div>

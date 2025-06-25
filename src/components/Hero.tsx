@@ -4,6 +4,7 @@ import ArrowRight from "../assets/arrow-right.svg?react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
+import { HiArrowLongDown } from "react-icons/hi2";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -16,6 +17,7 @@ const Hero: FunctionComponent<HeroProps> = () => {
   const [hasClicked, setHasClicked] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [loadedVideos, setLoadedVideos] = useState(0);
+  const [hasTimedOut, setHasTimedOut] = useState(false);
 
   const totalVideos = 4;
   const currentVideoRef = useRef<HTMLVideoElement>(null);
@@ -27,6 +29,19 @@ const Hero: FunctionComponent<HeroProps> = () => {
       setIsLoading(false);
     }
   }, [loadedVideos]);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      if (isLoading) {
+        if (loadedVideos > 0) {
+          setIsLoading(false);
+        }
+        setHasTimedOut(true);
+      }
+    }, 5000);
+
+    return () => clearTimeout(timeout);
+  }, [isLoading, loadedVideos]);
 
   useGSAP(
     () => {
@@ -111,11 +126,24 @@ const Hero: FunctionComponent<HeroProps> = () => {
     <div className="relative h-dvh w-screen overflow-x-hidden bg-zentry-blue-75">
       {isLoading && (
         <div className="flex-center absolute z-50 h-dvh w-screen overflow-hidden bg-zentry-blue-75">
-          <div className="three-body">
-            <div className="three-body__dot" />
-            <div className="three-body__dot" />
-            <div className="three-body__dot" />
-          </div>
+          {!hasTimedOut ? (
+            <div className="three-body">
+              <div className="three-body__dot" />
+              <div className="three-body__dot" />
+              <div className="three-body__dot" />
+            </div>
+          ) : (
+            <div className="flex flex-col items-center justify-center text-center max-w-72">
+              <p className="font-roobert-regular text-black mb-8">
+                The videos are taking longer than expected to load. You can
+                still explore the rest of the content below.
+              </p>
+              <p className="font-roobert-regular tracking-wider text-neutral-400 text-xs">
+                SCROLL
+              </p>
+              <HiArrowLongDown className="text-neutral-400/50 text-2xl" />
+            </div>
+          )}
         </div>
       )}
 
