@@ -6,10 +6,13 @@ import ZentryBento500k from "../assets/zentry-bento-500k.svg?react";
 import ZentryBento40m from "../assets/zentry-bento-40m.svg?react";
 import { cn } from "../utils/cn";
 import { backers, treasuryItems } from "../constants";
+import useMobile from "../hooks/use-mobile";
 
 interface OverviewProps {}
 
 const Overview: FunctionComponent<OverviewProps> = () => {
+  const { isTablet } = useMobile();
+
   return (
     <section className="relative min-h-dvh w-screen px-10 py-16">
       <AnimatedTitle
@@ -40,9 +43,11 @@ const Overview: FunctionComponent<OverviewProps> = () => {
           >
             <div className="relative size-full p-4 text-black">
               <div
+                className="transform-gpu"
                 style={{
-                  transform:
-                    "matrix3d(1, -0.236749, 0, 0.0028899, 0, 0.821054, 0, 0, 0, 0, 1, 0, 46.968, -14.6596, 0, 1)",
+                  transform: isTablet
+                    ? "matrix3d(1, -0.236749, 0, 0.0028899, 0, 0.821054, 0, 0, 0, 0, 1, 0, 20, -14.6596, 0, 1)"
+                    : "matrix3d(1, -0.236749, 0, 0.0028899, 0, 0.821054, 0, 0, 0, 0, 1, 0, 46.968, -14.6596, 0, 1)",
                 }}
               >
                 <ZentryBento30 className="aspect-[1/.64] w-full" />
@@ -92,9 +97,11 @@ const Overview: FunctionComponent<OverviewProps> = () => {
             <div className="size-full p-4">
               <OverviewTitle text="Residents" className="mb-4" />
               <div
+                className="transform-gpu"
                 style={{
-                  transform:
-                    "matrix3d(1, -0.18718, 0, 0.0023949, 0, 0.750001, 0, 0, 0, 0, 1, 0, 104.387, -19.539, 0, 1)",
+                  transform: isTablet
+                    ? "matrix3d(1, -0.18718, 0, 0.0023949, 0, 0.750001, 0, 0, 0, 0, 1, 0, 60, -19.539, 0, 1)"
+                    : "matrix3d(1, -0.18718, 0, 0.0023949, 0, 0.750001, 0, 0, 0, 0, 1, 0, 104.387, -19.539, 0, 1)",
                 }}
               >
                 <ZentryBento500k className="aspect-[1/.32] w-full" />
@@ -114,7 +121,7 @@ const Overview: FunctionComponent<OverviewProps> = () => {
             }}
           >
             <div className="size-full flex flex-col justify-between p-4 text-zentry-blue-75">
-              <p className="font-zentry special-font text-[3rem] leading-none">
+              <p className="font-zentry special-font text-[2rem] md:text-[3rem] leading-none">
                 W<b>orld</b>-class
                 <br />b<b>a</b>ckers
               </p>
@@ -135,14 +142,15 @@ const Overview: FunctionComponent<OverviewProps> = () => {
                 "w-full max-w-[450px] h-[256px] bg-zentry-blue-75 border-none",
             }}
           >
-            <div className="relativesize-full p-4">
+            <div className="relative size-full p-4">
               <OverviewTitle text="Revenue generated" className="leading-3" />
               <OverviewTitle text="2024" />
               <div
-                className="absolute bottom-3 left-0 right-5"
+                className="absolute bottom-3 left-0 right-5 transform-gpu"
                 style={{
-                  transform:
-                    "matrix3d(0.926398, -0.196153, 0, -0.0019292, -0.151131, 0.664834, 0, -0.0007239, 0, 0, 1, 0, -68.7245, 26.5938, 0, 1)",
+                  transform: isTablet
+                    ? "matrix3d(0.926398, -0.196153, 0, -0.0019292, -0.151131, 0.664834, 0, -0.0007239, 0, 0, 1, 0, -40, 10, 0, 1)"
+                    : "matrix3d(0.926398, -0.196153, 0, -0.0019292, -0.151131, 0.664834, 0, -0.0007239, 0, 0, 1, 0, -68.7245, 10, 0, 1)",
                 }}
               >
                 <ZentryBento40m className="w-full" />

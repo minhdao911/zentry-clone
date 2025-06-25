@@ -110,7 +110,7 @@ const Hero: FunctionComponent<HeroProps> = () => {
   return (
     <div className="relative h-dvh w-screen overflow-x-hidden bg-zentry-blue-75">
       {isLoading && (
-        <div className="flex-center absolute z-[100] h-dvh w-screen overflow-hidden bg-zentry-blue-75">
+        <div className="flex-center absolute z-50 h-dvh w-screen overflow-hidden bg-zentry-blue-75">
           <div className="three-body">
             <div className="three-body__dot" />
             <div className="three-body__dot" />
@@ -174,7 +174,7 @@ const Hero: FunctionComponent<HeroProps> = () => {
               redefi<b>n</b>e
             </h1>
 
-            <p className="mb-5 max-w-64 text-body text-zentry-blue-75">
+            <p className="mb-5 max-w-64 text-base md:text-lg text-zentry-blue-75">
               Enter the Metagame <br /> Unleash the Play Economy
             </p>
 

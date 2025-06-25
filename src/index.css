@@ -65,17 +65,17 @@ body {
   }
 
   .text-body {
-    @apply text-lg leading-6 md:text-base md:leading-5;
+    @apply leading-6 md:text-base md:leading-5;
     font-family: "roobert-regular";
     font-feature-settings: "ss02" on;
   }
 
   .text-body-2 {
-    @apply font-roobert-regular text-base md:text-xs;
+    @apply font-roobert-regular text-xs lg:text-base;
   }
 
   .text-body-3 {
-    @apply font-roobert-regular text-base leading-5 md:text-sm;
+    @apply font-roobert-regular text-sm leading-5 lg:text-base;
   }
 
   .hero-heading {
@@ -91,11 +91,11 @@ body {
   }
 
   .animated-title {
-    @apply flex flex-col gap-1 text-7xl uppercase leading-[.8] md:px-28 md:text-[6rem];
+    @apply flex flex-col gap-1 text-5xl uppercase leading-[.8] md:px-28  md:text-6xl lg:text-[6rem];
   }
 
   .animated-subtitle {
-    @apply font-general text-sm text-center uppercase md:text-[10px];
+    @apply font-general text-xs text-center uppercase md:text-[10px];
   }
 
   .animated-word {

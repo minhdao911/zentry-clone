@@ -31,6 +31,7 @@ const Welcome: FunctionComponent<WelcomeProps> = () => {
         <AnimatedTitle
           title="Disc<b>o</b>ver the world's largest shared <a>a</a>dventure"
           subTitle="Welcome to Zentry"
+          styles={{ container: "px-5 md:px-0" }}
         />
 
         <div id="clip" className="relative h-dvh w-screen">

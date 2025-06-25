@@ -52,7 +52,7 @@ const Footer: FunctionComponent<FooterProps> = () => {
                         styles={{
                           container: "disabled:text-zentry-violet-800",
                           innerContainer: "!gap-0.5",
-                          text: "font-roobert-regular text-lg 2xl:text-xl normal-case",
+                          text: "font-roobert-regular text-sm md:text-lg 2xl:text-xl normal-case",
                           icon: "w-4 2xl:w-5",
                         }}
                       />

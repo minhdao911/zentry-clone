@@ -9,12 +9,13 @@ import Logo from "../assets/logo.svg?react";
 import ArrowDownNarrow from "../assets/arrow-down-narrow.svg?react";
 import Button from "./ui/Button";
 import Icon from "./ui/Icon";
-import { useWindowScroll, useWindowSize } from "react-use";
+import { useWindowScroll } from "react-use";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { cn } from "../utils/cn";
 import { navItems } from "../constants";
 import { IconType } from "react-icons";
+import useMobile from "../hooks/use-mobile";
 
 interface NavbarProps {}
 
@@ -28,7 +29,6 @@ const Navbar: FunctionComponent<NavbarProps> = () => {
   const audioRef = useRef<HTMLAudioElement>(null);
 
   const { y: currentScrollY } = useWindowScroll();
-  const { width: windowWidth } = useWindowSize();
 
   useEffect(() => {
     if (currentScrollY === 0) {
@@ -98,7 +98,7 @@ const Navbar: FunctionComponent<NavbarProps> = () => {
   return (
     <div
       ref={navContainerRef}
-      className="fixed top-4 w-screen md:w-[calc(100vw-3rem)] lg:w-auto left-0 lg:left-6 inset-x-0 z-50 h-16 border-none transition-all duration-700 sm:inset-x-6"
+      className="fixed top-4 w-[calc(100vw-1rem)] md:w-[calc(100vw-3rem)] lg:w-auto left-2 lg:left-6 inset-x-0 z-50 h-16 border-none transition-all duration-700 sm:inset-x-6"
     >
       <header className="absolute top-1/2 w-full -translate-y-1/2">
         <nav className="flex size-full items-center justify-between px-3 lg:px-6">
@@ -117,11 +117,7 @@ const Navbar: FunctionComponent<NavbarProps> = () => {
               <div className="nav-item-bg absolute rounded-full bg-zentry-blue-75" />
 
               {navItems.map((item, index) => (
-                <NavItem
-                  key={index}
-                  {...item}
-                  isMobileScreen={windowWidth < 640}
-                />
+                <NavItem key={index} {...item} />
               ))}
             </div>
 
@@ -162,11 +158,11 @@ interface NavItemProps {
   text: string;
   icon?: IconType | FunctionComponent<SVGAttributes<SVGElement>>;
   mobile: boolean;
-  isMobileScreen?: boolean;
 }
 
-function NavItem({ text, icon, mobile, isMobileScreen }: NavItemProps) {
+function NavItem({ text, icon, mobile }: NavItemProps) {
   const bgRef = useRef<HTMLDivElement>(null);
+  const { isMobile } = useMobile();
 
   const handleMouseEnter = () => {
     if (!bgRef.current) return;
@@ -180,7 +176,7 @@ function NavItem({ text, icon, mobile, isMobileScreen }: NavItemProps) {
     if (isNaN(currentLeft)) {
       // Initial state - set position immediately
       gsap.set(".nav-item-bg", {
-        left: left - (isMobileScreen ? 0 : 24),
+        left: left - (isMobile ? 0 : 24),
         top: top - 30,
         width: width,
         height: height,
@@ -198,8 +194,7 @@ function NavItem({ text, icon, mobile, isMobileScreen }: NavItemProps) {
     }
   };
 
-  // If we're on mobile screen and this item is not marked for mobile display, hide it
-  if (isMobileScreen && !mobile) {
+  if (isMobile && !mobile) {
     return null;
   }
 

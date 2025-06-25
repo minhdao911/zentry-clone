@@ -20,7 +20,7 @@ const Updates: FunctionComponent<UpdatesProps> = () => {
               }}
             />
             <div className="flex flex-col gap-5 mt-5">
-              <p className="font-roobert-regular lg:text-sm w-80 lg:w-72 text-neutral-900">
+              <p className="font-roobert-regular text-sm w-80 lg:w-72 text-neutral-900">
                 Stay updated with the latest news, events, and updates in our
                 ecosystem. Be part of our universe's growth and evolution.
               </p>
@@ -42,8 +42,8 @@ const Updates: FunctionComponent<UpdatesProps> = () => {
                   className="w-full border border-black rounded-lg"
                 />
                 <div className="flex gap-10 mt-5 w-full pr-10">
-                  <p className="font-general text-xs lg:text-3xs">{date}</p>
-                  <h3 className="font-roobert-regular leading-5 text-lg lg:text-base">
+                  <p className="font-general text-3xs">{date}</p>
+                  <h3 className="font-roobert-regular leading-5 text-sm md:text-base">
                     {title}
                   </h3>
                 </div>

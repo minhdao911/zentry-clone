@@ -7,7 +7,7 @@ interface ContactProps {}
 
 const Contact: FunctionComponent<ContactProps> = () => {
   return (
-    <section className="relative w-screen p-10 bg-zentry-blue-75">
+    <section className="relative w-screen p-5 md:p-10 bg-zentry-blue-75">
       <div className="relative rounded-lg bg-black px-10 md:px-0 py-24 overflow-hidden">
         <div className="absolute top-0 hidden md:block md:left-0 lg:left-20 w-96">
           <ImageClipBox

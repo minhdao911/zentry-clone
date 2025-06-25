@@ -28,7 +28,7 @@ const Features: FunctionComponent<FeaturesProps> = () => {
       <div className="container mx-auto px-3 md:px-20">
         <div className="px-5 py-32 text-body">
           <p className="text-zentry-blue-50">Explore the Zentry Universe</p>
-          <p className="text-neutral-500 max-w-[400px] 2xl:max-w-[450px]">
+          <p className="text-neutral-500 max-w-[400px] 2xl:max-w-[450px] text-sm sm:text-base">
             Immerse yourself in an IP-rich product universe where AI-driven
             gamification and hyper-personalization lead humans & AI into a
             global play economy.

@@ -4,6 +4,7 @@ import { cn } from "../utils/cn";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/all";
 import gsap from "gsap";
+import useMobile from "../hooks/use-mobile";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -15,6 +16,7 @@ const Backers: FunctionComponent<BackersProps> = () => {
     boldText: string;
     text: string;
   }>(partnersDescription[0]);
+  const { isTablet } = useMobile();
 
   useGSAP(() => {
     ScrollTrigger.create({
@@ -109,7 +111,7 @@ const Backers: FunctionComponent<BackersProps> = () => {
           </div>
           <div className="block lg:hidden pl-20 pb-20 max-w-[500px]">
             <Description
-              className="text-xl leading-6"
+              className="text-base leading-[1.3] md:text-lg md:leading-6"
               boldText="Our partners"
               text="span gaming, Web3, Al, and beyond-backing our growth, sparking innovation, and elevating the player experience."
             />
@@ -128,18 +130,22 @@ const Backers: FunctionComponent<BackersProps> = () => {
                 <div
                   className={cn(
                     "relative flex items-start text-zentry-blue-75",
-                    activeItem === index && "text-zentry-yellow-300"
+                    !isTablet &&
+                      activeItem === index &&
+                      "text-zentry-yellow-300"
                   )}
                 >
                   <p
                     className={cn(
-                      "absolute top-0 left-0 lg:-left-14 font-general text-xs lg:text-3xs uppercase text-neutral-500",
-                      activeItem === index && "text-zentry-yellow-300"
+                      "absolute top-4 left-2 lg:top-0 lg:-left-14 font-general text-2xs md:text-xs lg:text-3xs uppercase text-neutral-500",
+                      !isTablet &&
+                        activeItem === index &&
+                        "text-zentry-yellow-300"
                     )}
                   >
                     {type}
                   </p>
-                  <p className="font-zentry text-6xl lg:text-5xl pl-20 lg:pl-0">
+                  <p className="font-zentry text-3xl lg:text-5xl pl-20 lg:pl-0">
                     {name}
                   </p>
                 </div>

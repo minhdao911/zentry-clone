@@ -91,9 +91,9 @@ const Story: FunctionComponent<StoryProps> = () => {
           <RoundedCorners />
         </div>
 
-        <div className="mt-[-150px] md:mt-[-100px] w-full flex justify-center lg:justify-end">
+        <div className="mt-[-100px] md:mt-[-50px] w-full flex justify-center lg:justify-end">
           <div className="flex h-full w-fit flex-col items-center lg:items-start">
-            <p className="story-text mb-5 lg:mb-3 max-w-xs text-center md:text-sm font-roobert-regular text-zentry-blue-75 lg:text-start">
+            <p className="story-text mb-5 lg:mb-3 max-w-xs text-center text-xs md:text-sm font-roobert-regular text-zentry-blue-75 lg:text-start">
               Where realms converge, lies Zentry and the boundless pillar.
               Discover its secrets and shape your fate amidst infinite
               opportunities.

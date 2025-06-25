@@ -71,7 +71,7 @@ const About: FunctionComponent<AboutProps> = () => {
   });
 
   return (
-    <section id="about" className="relative h-dvh w-screen">
+    <section id="about" className="relative h-dvh w-screen px-5 md:px-0">
       <div className="flex-center flex-col gap-6 h-full">
         <AnimatedTitle
           title="We're b<b>u</b>ilding<br />a new <trigger>trigger1</trigger> realit<b>y</b><br />that rew<b>a</b>rds<br />play<b>e</b>rs <trigger>trigger2</trigger> and<br />e<b>m</b>powers<br />hu<b>m</b>ans & AI<br />to <trigger>trigger3</trigger> thri<b>v</b>e"
@@ -184,10 +184,12 @@ const InteractiveDot = ({ className, imgSrc }: InteractiveDotProps) => {
   };
 
   return (
-    <div className={cn("group relative flex-center p-3 z-50", className)}>
+    <div
+      className={cn("group relative flex-center p-1 md:p-3 z-50", className)}
+    >
       <div
         ref={dotRef}
-        className="w-8 h-8 bg-black rounded scale-100 opacity-100 group-hover:scale-125 group-hover:opacity-50 transition-all duration-700 animate-pulse-scale"
+        className="w-6 h-6 md:w-8 md:h-8 bg-black rounded scale-100 opacity-100 group-hover:scale-125 group-hover:opacity-50 transition-all duration-700 animate-pulse-scale"
       />
       <div className="absolute-center w-64 h-44 cursor-pointer overflow-hidden rounded-lg z-50">
         <div

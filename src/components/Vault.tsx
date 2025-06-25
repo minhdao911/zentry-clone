@@ -71,7 +71,10 @@ const Vault: FunctionComponent<VaultProps> = () => {
   };
 
   return (
-    <section id="vault" className="relative h-dvh w-screen px-10 py-16">
+    <section
+      id="vault"
+      className="relative h-dvh w-screen px-5 py-10 md:px-10 md:py-16"
+    >
       <div className="flex flex-col h-full justify-between">
         <div className="flex flex-col gap-10">
           <AnimatedTitle
@@ -85,7 +88,7 @@ const Vault: FunctionComponent<VaultProps> = () => {
           />
         </div>
 
-        <div className="absolute-center md:translate-x-0 md:translate-y-0 md:top-auto md:left-auto md:right-0 md:bottom-0 w-[350px] md:w-[470px]">
+        <div className="absolute-center md:translate-x-0 md:translate-y-0 md:top-auto md:left-auto md:right-0 md:bottom-0 w-[300px] md:w-[400px] lg:w-[470px]">
           <video
             src="videos/vault-1.webm"
             autoPlay
@@ -120,14 +123,14 @@ const Vault: FunctionComponent<VaultProps> = () => {
               )}
             >
               <div className="flex items-center gap-10">
-                <p className="text-body-2 !font-roboto-mono w-[15px] text-center">
+                <p className="text-2xs lg:text-xs font-roboto-mono w-[15px] text-center">
                   0{index + 1}
                 </p>
                 <h3
                   className={cn(
-                    "text-body",
+                    "text-body text-sm lg:text-base",
                     currentIndex !== index &&
-                      "text-sm md:text-xs !font-roboto-mono uppercase"
+                      "text-xs !font-roboto-mono uppercase"
                   )}
                 >
                   {item.title}
